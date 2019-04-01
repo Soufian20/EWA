@@ -12,14 +12,32 @@
 </head>
 <body>
     <h1>Bestellung</h1>
-    <section>
+    
             <section>
                 <h1>Speisekarte</h1>
-                <img class = "foodPics" src="images/Pizza-Margherita-4bb0ecf864075.webp" >
-                <img class = "foodPics" src="images/Pizza-Margherita-4bb0ecf864075.webp" >
-                <img class = "foodPics" src="images/Pizza-Margherita-4bb0ecf864075.webp" >
+                <div><img src="images/margherita.png" width="250" height=250"></div>
+                <p>Margherita<br /><br />  4.00€</p>
+                <div><img src="images/salami.jpg" width="250" height=250"></div>
+                <p>Salami<br /><br />  4.50€</p>
+                <div><img src="images/hawaii.jpg" width="250" height=250"></div>
+                <p>Hawaii<br /><br />  5.50€</p>
             </section>
-    </section>
+    <h1>Warenkorb</h1>
+            <select name="cars" size="3">
+                <option value="Margherita">Margherita</option>
+                <option value="Salami">Salami</option>
+                <option value="Hawaii">Hawaii</option>
+              </select>
+              <p>14.50€</p>
+
+              <section>
+                <input type="text" name="adresse" placeholder="Ihre Adresse">
+                <div><br /></div>
+                <input type="button" onclick="alert('Alles gelöscht')" value="Alle Löschen">
+                <input type="button" onclick="alert('Auswahl gelöscht')" value="Auswahl Löschen">
+                <input type="button" onclick="alert('Sie haben bestellt')" value="Bestellen">
+
+              </section>
     
 </body>
 </html>
