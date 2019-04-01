@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <!-- für später: CSS include -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
 
     <!-- für später: JavaScript include -->
     <!-- <script src="XXX.js"></script> -->
@@ -13,90 +13,60 @@
 <body>
     <h1>Bestellung</h1>
     <section>
-            <h1>Speisekarte</h1>
-            <section>
-                <section>
-                    <strong>Margherita</strong>
-                    <br>
-                    <img width="250" height="150" src="images/Pizza-Margherita-4bb0ecf864075.webp">
-                    <section>
-                        <span>4.00€</span>
-                    </section>
-                </section>
+        <h2>Speisekarte</h2>
+        <strong>Margherita</strong>
+        <br>
+        <img alt="Margherita" width="250" height="150" src="images/Pizza-Margherita-4bb0ecf864075.webp"> <br>
+        <span>4.00€</span> <br>
  
-                <section>
-                    <strong>Salami</strong>
-                    <br>
-                    <img  width="250" height="150" src="images/_pizza-salami--freisteller_09449562_high.jpg">
-                    <section>
-                            <span>4.50€</span>
-                    </section>
-                </section>
+        <strong>Salami</strong>
+        <br>
+        <img  alt="Salami" width="250" height="150" src="images/_pizza-salami--freisteller_09449562_high.jpg"> <br>
+        <span>4.50€</span> <br>
 
-                <section>
-                    <strong>Hawaii</strong>
-                    <br>
-                    <img  width="250" height="150" src="images/2330.jpg">
-                    <section>
-                            <span>5.50€</span>
-                    </section>
-                </section>
-            </section>
+        <strong>Hawaii</strong> <br>
+        <br>
+        <img alt="Hawaii" width="250" height="150" src="images/2330.jpg"><br>
+        <span>5.50€</span>
+    </section>           
 
-            <h1>Warenkorb</h1>
-                <section>
-                    <form>
-                    <select name="top3[]" size="3" multiple>
-                        <option selected>   Margherita</option>
-                        <option>            Salami</option>
-                        <option>            Hawaii</option>
-                    </select>
-                    <input type="reset" value="Auswahl Löschen"/>
-                    </form>
-                </section>
+    <section>
+        <h2>Warenkorb</h2>
+        <form id="form1">
+        <select name="top3[]" size="3" multiple>
+            <option selected>   Margherita</option>
+            <option>            Salami</option>
+            <option>            Hawaii</option>
+        </select>
+        </form>
+        <br>
+            <label>Gesamtpreis:
+                <output>14.50€</output>  
+            </label>
+        <br> <br>
+        <fieldset>
+            <form id="form2" action='https://echo.fbi.h-da.de/' method="GET" accept-charset="UTF-8">
+                <span>Bitte machen Sie Ihre Eingaben</span> <br>                       
+                <label>
+                    <span>Vorname:</span> <br>
+                    <input type="text" id="Vorname" name="Vorname" placeholder="Ihr Vorname" required/>    
+                </label>
                 <br>
-                <section>
-                    <label>Gesamtpreis:
-                        <output>14.50€</output>  
-                    </label>
-                </section>
+                <label>
+                    <span>Nachname:</span> <br>
+                    <input type="text" id="Nachname" name="Nachname" placeholder="Ihr Nachname" required/>
+                </label>
                 <br>
-                <fieldset>
-                    <form action='https://echo.fbi.h-da.de/' method="GET" accept-charset="UTF-8">
-                        <legend>Bitte machen Sie Ihre Eingaben</legend>
-                        <label>
-                            <legend>Vorname:</legend>
-                            <input type="text" id="Vorname" name="Vorname" placeholder="Ihr Vorname" required/>    
-                        </label>
-                            
-                        <label>
-                            <legend>Nachname:</legend>
-                            <input type="text" id="Nachname" name="Nachname" placeholder="Ihr Nachname" required/>
-                        </label>
-
-                        <label>
-                            <legend>Adresse:</legend>
-                            <input type="text" id="Adresse" name="Adresse" placeholder="Ihre Adresse" required/> <!-- required: Feld darf nicht leer bleiben-->
-                        </label>
-                        <br>
-                        <input type="reset" value="Alle Löschen"/>
-                         
-                        <input type="submit" value="Bestellen"/>                        
-                    </form>
-                </fieldset>
-                
-                <!--<input type="reset" name="Alle Löschen" value="Alle Löschen"
-                onclick="self.location.href='http://www.xyz.de/'" />
-
-                <input type="button" name="Auswahl Löschen" value="Auswahl Löschen"
-                onclick="self.location.href='http://www.xyz.de/'" />-->
-
-                
-                    
-                    
-
-             
+                <label>
+                    <span>Adresse:</span> <br>
+                    <input type="text" id="Adresse" name="Adresse" placeholder="Ihre Adresse" required/> <!-- required: Feld darf nicht leer bleiben-->
+                </label>
+                <br>
+                <input type="reset" value="Alle Löschen"/>
+                <input form="form1" type="reset" value="Auswahl Löschen"/>
+                <input type="submit" value="Bestellen"/>                        
+            </form>
+        </fieldset>            
     </section>
-    
 </body>
 </html>
