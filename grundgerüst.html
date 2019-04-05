@@ -10,7 +10,7 @@
     <!-- <script src="XXX.js"></script> -->
     <title>Bestellseite</title>
 </head>
-<body>
+<body> 
     <h1>Bestellung</h1>
     <section>
         <h2>Speisekarte</h2>
@@ -32,41 +32,40 @@
 
     <section>
         <h2>Warenkorb</h2>
-        <form id="form1">
-        <select name="top3[]" size="3" multiple>
-            <option selected>   Margherita</option>
+        <form id="form1" action='https://echo.fbi.h-da.de/' method="GET" accept-charset="UTF-8">
+        <select name="Bestellungen[]" size="3" multiple>
+            <option>            Margherita</option>
             <option>            Salami</option>
             <option>            Hawaii</option>
         </select>
-        </form>
         <br>
-            <label>Gesamtpreis:
-                <output>14.50€</output>  
-            </label>
-        <br> <br>
+        <label>Gesamtpreis:
+            <output>14.50€</output>  
+        </label>
+
         <fieldset>
-            <form id="form2" action='https://echo.fbi.h-da.de/' method="GET" accept-charset="UTF-8">
                 <span>Bitte machen Sie Ihre Eingaben</span> <br>                       
                 <label>
                     <span>Vorname:</span> <br>
-                    <input type="text" id="Vorname" name="Vorname" placeholder="Ihr Vorname" required/>    
+                    <input type="text" id="Vorname" name="Vorname" placeholder="Ihr Vorname" maxlength="15" required/>    
                 </label>
                 <br>
                 <label>
                     <span>Nachname:</span> <br>
-                    <input type="text" id="Nachname" name="Nachname" placeholder="Ihr Nachname" required/>
+                    <input type="text" id="Nachname" name="Nachname" placeholder="Ihr Nachname" maxlength="15" required/>
                 </label>
                 <br>
                 <label>
                     <span>Adresse:</span> <br>
-                    <input type="text" id="Adresse" name="Adresse" placeholder="Ihre Adresse" required/> <!-- required: Feld darf nicht leer bleiben-->
+                    <input type="text" id="Adresse" name="Adresse" placeholder="Ihre Adresse" maxlength="15" required/> <!-- required: Feld darf nicht leer bleiben-->
                 </label>
                 <br>
-                <input type="reset" value="Alle Löschen"/>
+                <input form="form1" type="reset" value="Alles Löschen"/>
                 <input form="form1" type="reset" value="Auswahl Löschen"/>
                 <input type="submit" value="Bestellen"/>                        
-            </form>
-        </fieldset>            
+        </fieldset>  
+        </form>
+                  
     </section>
 </body>
 </html>
