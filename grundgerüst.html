@@ -25,21 +25,20 @@
         <span>4.50€</span> <br>
 
         <strong>Hawaii</strong> <br>
-        <br>
         <img alt="Hawaii" width="250" height="150" src="images/2330.jpg"><br>
         <span>5.50€</span>
     </section>           
 
     <section>
         <h2>Warenkorb</h2>
-        <form id="form1" action='https://echo.fbi.h-da.de/' method="GET" accept-charset="UTF-8">
-        <select name="Bestellungen[]" size="3" multiple>
-            <option>            Margherita</option>
+        <form id="form1" action='https://echo.fbi.h-da.de/' method="POST" accept-charset="UTF-8">
+        <select tabindex="1" name="Bestellungen[]" size="3" multiple>
+            <option selected="selected"> Margherita</option>
             <option>            Salami</option>
             <option>            Hawaii</option>
         </select>
         <br>
-        <label>Gesamtpreis:
+        <label id="Gesamtpreis" for="Gesamtpreis">Gesamtpreis:
             <output>14.50€</output>  
         </label>
 
@@ -47,17 +46,17 @@
                 <span>Bitte machen Sie Ihre Eingaben</span> <br>                       
                 <label>
                     <span>Vorname:</span> <br>
-                    <input type="text" id="Vorname" name="Vorname" placeholder="Ihr Vorname" maxlength="15" required/>    
+                    <input type="text" id="Vorname" name="Vorname" value="" placeholder="Ihr Vorname" maxlength="15" required/>    
                 </label>
                 <br>
                 <label>
                     <span>Nachname:</span> <br>
-                    <input type="text" id="Nachname" name="Nachname" placeholder="Ihr Nachname" maxlength="15" required/>
+                    <input type="text" id="Nachname" name="Nachname" value="" placeholder="Ihr Nachname" maxlength="15" required/>
                 </label>
                 <br>
                 <label>
                     <span>Adresse:</span> <br>
-                    <input type="text" id="Adresse" name="Adresse" placeholder="Ihre Adresse" maxlength="15" required/> <!-- required: Feld darf nicht leer bleiben-->
+                    <input type="text" id="Adresse" name="Adresse" value="" placeholder="Ihre Adresse" maxlength="15" required/> <!-- required: Feld darf nicht leer bleiben-->
                 </label>
                 <br>
                 <input form="form1" type="reset" value="Alles Löschen"/>
