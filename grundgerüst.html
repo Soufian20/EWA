@@ -2,42 +2,131 @@
 <!DOCTYPE html>
 <html lang="de">  
 <head>
-    <meta charset="UTF-8" /> 
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- für später: CSS include -->
+    <script src="script.js"></script> 
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+    crossorigin="anonymous">
+ 
 
-    <!-- für später: JavaScript include -->
-    <!-- <script src="XXX.js"></script> -->
+    
+    
     <title>Bestellseite</title>
 </head>
-<body>
-    <h1>Bestellung</h1>
-    
-            <section>
-                <h2>Speisekarte</h2>
-                <div><img src="images/margherita.png" width = "250" height = "250" alt="Pizza Margherita"></div>
-                <p>Margherita<br /><br />  4.00€</p>
-                <div><img src="images/salami.jpg" width="250" height="250" alt="Pizza Salami"></div>
-                <p>Salami<br /><br />  4.50€</p>
-                <div><img src="images/hawaii.jpg" width="250" height="250" alt="Pizza Hawaii"></div>
-                <p>Hawaii<br /><br />  5.50€</p>
-            </section>
-                <h2>Warenkorb</h2>
-            <select name="cars" size="3">
-                <option value="Margherita">Margherita</option>
-                <option value="Salami">Salami</option>
-                <option value="Hawaii">Hawaii</option>
-              </select>
-              <p>14.50€</p>
+<body> 
+        <header>
+                <div class="menu-toggle" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="overlay"></div>
+                <div class="container">
+                    <nav>
+                        <h1 class="brand"><a href="index.html">pi<span>zz</span>a</a></h1>
+                        <ul>
+                            <li><a href="#">Bestellung</a></li>
+                            <li><a href="#">Kunde</a></li>
+                            <li><a href="#">Bäcker</a></li>
+                            <li><a href="#">Fahrer</a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </header>
 
-              
-                <input type="text" name="adresse" placeholder="Ihre Adresse">
-                <div><br /></div>
-                <input type="button" onclick="alert('Alles gelöscht')" value="Alle Löschen">
-                <input type="button" onclick="alert('Auswahl gelöscht')" value="Auswahl Löschen">
-                <input type="button" onclick="alert('Sie haben bestellt')" value="Bestellen">
+        <form class="submission-form">
+  
+                <label for="first-name">
+                  First Name
+                </label>
+                
+                <input type="text" id="first-name">
+                
+                <label for="last-name">
+                  Last Name
+                </label>
+                
+                <input type="text" id="last-name">
+                
+                <label for="email">
+                    Email
+                </label>
+                
+                <input type="email" id="email">
+                
+                <label for="phone">
+                  Telephone
+                </label>
+                
+                <input type="tel" id="phone">
+                
+                
+                <label for="message">
+                  Message
+                </label>
+                
+                <textarea id="message"></textarea>
+                
+                <input type="submit" value="Send" id="sendBtn">
+                
+                
+                
+              </form>
+    <!-- <h1>Bestellung</h1>
+    <section>
+        <h2>Speisekarte</h2>
+        <strong>Margherita</strong>
+        <br>
+        <img alt="Margherita" width="250" height="150" src="images/Pizza-Margherita-4bb0ecf864075.webp"> <br>
+        <span>4.00€</span> <br>
+ 
+        <strong>Salami</strong>
+        <br>
+        <img  alt="Salami" width="250" height="150" src="images/_pizza-salami--freisteller_09449562_high.jpg"> <br>
+        <span>4.50€</span> <br>
 
-              
-    
+        <strong>Hawaii</strong> <br>
+        <img alt="Hawaii" width="250" height="150" src="images/2330.jpg"><br>
+        <span>5.50€</span>
+    </section>           
+
+    <section>
+        <h2>Warenkorb</h2>
+        <form id="form1" action='https://echo.fbi.h-da.de/' method="POST" accept-charset="UTF-8">
+        <select tabindex="1" name="Bestellungen[]" size="3" multiple>
+            <option selected="selected"> Margherita</option>
+            <option>            Salami</option>
+            <option>            Hawaii</option>
+        </select>
+        <br>
+        <label id="Gesamtpreis" for="Gesamtpreis">Gesamtpreis:
+            <output>14.50€</output>  
+        </label>
+
+        <fieldset>
+                <span>Bitte machen Sie Ihre Eingaben</span> <br>                       
+                <label>
+                    <span>Vorname:</span> <br>
+                    <input type="text" id="Vorname" name="Vorname" value="" placeholder="Ihr Vorname" maxlength="15" required/>    
+                </label>
+                <br>
+                <label>
+                    <span>Nachname:</span> <br>
+                    <input type="text" id="Nachname" name="Nachname" value="" placeholder="Ihr Nachname" maxlength="15" required>
+                </label>
+                <br>
+                <label>
+                    <span>Adresse:</span> <br>
+                    <input type="text" id="Adresse" name="Adresse" value="" placeholder="Ihre Adresse" maxlength="15" required/> <!-- required: Feld darf nicht leer bleiben-->
+                <!-- </label>
+                <br>
+                <input form="form1" type="reset" value="Alles Löschen"/>
+                <input form="form1" type="reset" value="Auswahl Löschen"/>
+                <input type="submit" value="Bestellen"/>                        
+        </fieldset>  
+        </form>
+                  
+    </section> -->
 </body>
 </html>
