@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <!-- für später: CSS include -->
-    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
 
     <!-- für später: JavaScript include -->
     <!-- <script src="XXX.js"></script> -->
@@ -16,22 +16,22 @@
         <h2>Speisekarte</h2>
         <strong>Margherita</strong>
         <br>
-        <img alt="Margherita" width="250" height="150" src="images/Pizza-Margherita-4bb0ecf864075.webp"> <br>
+        <img width="250" height="150" alt="Margherita" src="images/Pizza-Margherita.png"> <br>
         <span>4.00€</span> <br>
  
         <strong>Salami</strong>
         <br>
-        <img  alt="Salami" width="250" height="150" src="images/_pizza-salami--freisteller_09449562_high.jpg"> <br>
+        <img  alt="Salami" width="250" height="150" src="images/Pizza-Salami.png"> <br>
         <span>4.50€</span> <br>
 
-        <strong>Hawaii</strong> <br>
-        <img alt="Hawaii" width="250" height="150" src="images/2330.jpg"><br>
+        <strong>Champignons</strong> <br>
+        <img alt="Hawaii" width="250" height="150" src="images/Pizza-Champignons.png"><br>
         <span>5.50€</span>
     </section>           
 
     <section>
         <h2>Warenkorb</h2>
-        <form id="form1" action='https://echo.fbi.h-da.de/' method="POST" accept-charset="UTF-8">
+        <form id="form1" action='https://echo.fbi.h-da.de/' method="POST" accept-charset="UTF-8"> <!--https://echo.fbi.h-da.de/-->
         <select tabindex="1" name="Bestellungen[]" size="3" multiple>
             <option selected="selected"> Margherita</option>
             <option>            Salami</option>
@@ -63,8 +63,7 @@
                 <input form="form1" type="reset" value="Auswahl Löschen"/>
                 <input type="submit" value="Bestellen"/>                        
         </fieldset>  
-        </form>
-                  
+        </form>      
     </section>
 </body>
 </html>
