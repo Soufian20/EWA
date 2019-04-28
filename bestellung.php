@@ -25,7 +25,7 @@
                 <li class="active"><a href="bestellung.php">Bestellung</a></li>
                 <li><a href="kunde.php">Kunde</a></li>
                 <li><a href="pizzabaecker.html">Pizzabäcker</a></li>
-                <li><a href="fahrer.html">Fahrer</a></li>
+                <li><a href="fahrer.php">Fahrer</a></li>
             </ul>
          </nav>
         <!-- SPEISEKARTE -->
@@ -51,6 +51,8 @@
                 <option>            Salami</option>
                 <option>            Hawaii</option>
             </select>
+            <br>
+            <br>
         </section>
             <br> 
         <section class="Formular">

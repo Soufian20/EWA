@@ -25,7 +25,7 @@
                 <li><a href="bestellung.php">Bestellung</a></li>
                 <li class="active"><a href="kunde.php">Kunde</a></li>
                 <li><a href="pizzabaecker.html">Pizzabäcker</a></li>
-                <li><a href="fahrer.html">Fahrer</a></li>
+                <li><a href="fahrer.php">Fahrer</a></li>
             </ul>
          </nav>
         <!-- Kundenansicht -->

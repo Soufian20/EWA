@@ -106,7 +106,9 @@ preis {
     width: 400px;
     height: auto;
     border: 3px red solid;
-    text-align: center;  
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;  
 }
 
 .Warenkorb {
@@ -114,6 +116,8 @@ preis {
     width: 400px;
     border: 3px red solid;
     text-align: center; 
+    margin-left: auto;
+    margin-right: auto;  
 }
 
 .Formular {
@@ -121,6 +125,8 @@ preis {
     background-color: yellow;
     border: 3px red solid;
     text-align: center; 
+    margin-left: auto;
+    margin-right: auto;  
 }
 
 .Formular > fieldset > span {
@@ -180,3 +186,8 @@ preis {
 }
 
 /* === FAHRER === */
+
+.fahrer {
+    margin-left: auto;
+    margin-right: auto;  
+}
