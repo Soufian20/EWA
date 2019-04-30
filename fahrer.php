@@ -1,6 +1,6 @@
 <?php
     header ("Content-type: text/html");
-    $title="Bestellung";
+    $title="Fahrer";
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -24,7 +24,7 @@
                 <li><a href="index.php">Startseite</a></li>
                 <li ><a href="bestellung.php">Bestellung</a></li>
                 <li><a href="kunde.php">Kunde</a></li>
-                <li><a href="pizzabaecker.html">Pizzabäcker</a></li>
+                <li><a href="pizzabaecker.php">Pizzabäcker</a></li>
                 <li class="active"><a href="fahrer.php">Fahrer</a></li>
             </ul>
          </nav>

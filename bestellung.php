@@ -24,7 +24,7 @@
                 <li><a href="index.php">Startseite</a></li>
                 <li class="active"><a href="bestellung.php">Bestellung</a></li>
                 <li><a href="kunde.php">Kunde</a></li>
-                <li><a href="pizzabaecker.html">Pizzabäcker</a></li>
+                <li><a href="pizzabaecker.php">Pizzabäcker</a></li>
                 <li><a href="fahrer.php">Fahrer</a></li>
             </ul>
          </nav>
@@ -37,9 +37,9 @@
         <span class="gericht">2. Pizza Salami € 4,50</span>
         <br>
         <img  alt="Salami" width="250" height="150" src="images/Pizza-Salami.png"> <br>
-        <span class="gericht">3. Pizza Funghi € 5,50</span>
+        <span class="gericht">3. Pizza Fungi € 5,50</span>
         <br>
-        <img alt="Hawaii" width="250" height="150" src="images/Pizza-Champignons.png"><br>
+        <img alt="Fungi" width="250" height="150" src="images/Pizza-Champignons.png"><br>
         </section>
         <br>
         <!-- WARENKORB -->
@@ -56,7 +56,6 @@
         </section>
             <br> 
         <section class="Formular">
-        <br>
             <label id="Gesamtpreis" for="Gesamtpreis">Gesamtpreis:
                 <output>14.50€</output>  
             </label>
@@ -83,8 +82,6 @@
             </fieldset>  
             </form>
         </section>
-        <br>
-        
         EOT;
         ?>
         <?php
