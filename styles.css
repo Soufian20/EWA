@@ -1,0 +1,193 @@
+
+/* === FARBEN === */
+
+/*
+Blau:           #1F4EBC
+Dunkel Grau:    #3D3F45
+Hell Grau:      #E5E5E5
+Rot:            #A62C21
+*/
+
+body {
+    margin: 0;
+    font-family: 'Raleway', 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 16px;
+    background:url(images/hintergrund.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+* {
+    box-sizing: border-box;
+}
+/* === NAVIGATIONSLEISTE === */
+
+.header-nav {
+    width: 100%;
+    height: 50px;
+    background-color: #3D3F45;
+    position: relative;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.header-nav > a > h1 {
+    height: 30px;
+    width: auto;
+    position: absolute;
+    left: 2rem;
+    top: -2.0rem;
+    font-size: 40px;
+    color: black;
+}
+
+.header-nav > a > h1 > span {
+    color: #A62C21;
+}
+
+.header-nav > ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 2rem;
+    height: 100%;
+}
+.header-nav > ul > li {
+    display: inline-block;
+    height: 100%;
+    padding: 0 0.4rem 0 0.4rem;
+}
+
+.header-nav > ul > li > a {
+    margin: 0.8rem;
+    display: inline-block;
+}
+
+.header-nav > ul > li > a:link {
+    color: white;
+    text-decoration: none;
+}
+
+.header-nav > ul > li > a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.header-nav > ul > li > a:hover {
+    color: #E5E5E5;
+    text-decoration: none;
+}
+
+.header-nav > ul > li > a:active {
+    color: #E5E5E5;
+    text-decoration: none;
+}
+
+.active {
+    background-color: #A62C21;
+}
+
+preis {
+    float: right;
+}
+.gericht, .preis {
+    color: #7e1100;
+    font-size: 1.25em;
+    font-weight: bold;
+}
+/* === STARTSEITE === */
+
+/* === BESTELLUNG === */
+
+.Speisekarte {
+    background-color: yellow;
+    width: 400px;
+    height: auto;
+    border: 3px red solid;
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+.Warenkorb {
+    background-color: yellow;
+    width: 400px;
+    border: 3px red solid;
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+.Formular {
+    width: 400px;
+    background-color: yellow;
+    border: 3px red solid;
+    text-align: center; 
+    margin-left: auto;
+    margin-right: auto;  
+}
+
+.Formular > fieldset > span {
+    font-weight: bold;
+}
+
+.Formular > fieldset {
+    border: 0;
+    padding: 0;
+}
+
+
+
+
+/* === KUNDE === */
+
+.Lieferstatus {
+    background-color: yellow;
+    width: 400px;
+    border: 3px red solid;
+    text-align: center; 
+    margin: auto;
+    height: 200px;
+}
+
+/* === PIZZABÄCKER === */
+
+.bestellte-pizzen {
+    background-color: yellow;
+    width: 400px;
+    border: 3px red solid;
+    text-align: center; 
+    margin: auto;
+    height: 300px;
+    
+}
+
+.bestellte-pizzen > span {
+    position: relative;
+    left: 50px;
+    margin: 20px;
+}
+
+.bestellte-pizzen > fieldset {
+    border: 400px;
+}
+
+.bestellte-pizzen > fieldset > ul > label {
+    position: relative;
+    right: 100px;
+}
+
+.radioButtons > label > input {
+    position: relative;
+    left: 100px;
+    margin: 0.5rem;
+}
+
+/* === FAHRER === */
+
+.fahrer {
+    margin-left: auto;
+    margin-right: auto;  
+}
