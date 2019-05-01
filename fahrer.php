@@ -11,12 +11,11 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>$title</title>
     </head>
-    EOT;
+EOT;
 ?>
 
 <body>
-    <?php
-        echo <<<EOT
+    
         <!-- NAVIGATIONSLEISTE -->
          <nav class="header-nav"> 
             <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
@@ -64,9 +63,6 @@
         <br>
         </section>
         
-        EOT;
-      
-        ?>
         
     
 </body>

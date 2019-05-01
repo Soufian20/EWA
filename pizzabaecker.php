@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>$title</title>
     </head>
-    EOT;
+EOT;
 ?>
 
 <body>
@@ -59,12 +59,12 @@
                  </ul>
              </fieldset>
              </section>
-        EOT;
+EOT;
         ?>
         <?php
             echo <<<EOT
             <section id="berechnung"> 
-            EOT;
+EOT;
         ?>
         <?php
                 if(isset($_POST["submit"]))
@@ -75,7 +75,7 @@
         <?php
             echo <<<EOT
             </section> 
-            EOT;
+EOT;
         ?>
 </body>
 

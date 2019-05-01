@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>$title</title>
     </head>
-    EOT;
+EOT;
 ?>
 
 <body>
@@ -78,16 +78,16 @@
                     <br>
                     <input form="form1" type="reset" value="Alles Löschen"/>
                     <input form="form1" type="reset" value="Auswahl Löschen"/>
-                    <input type="submit" value="Bestellen"/>                        
+                    <input type="submit" value="Bestellen" name="submit"/>                        
             </fieldset>  
             </form>
         </section>
-        EOT;
+EOT;
         ?>
         <?php
             echo <<<EOT
             <section id="berechnung"> 
-            EOT;
+EOT;
         ?>
         <?php
                 if(isset($_POST["submit"]))
@@ -98,7 +98,7 @@
         <?php
             echo <<<EOT
             </section> 
-            EOT;
+EOT;
         ?>
         
     
