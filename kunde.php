@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>$title</title>
     </head>
-    EOT;
+EOT;
 ?>
 
 <body>
@@ -46,7 +46,7 @@
         <button onclick="location.href='bestellung.php'" type="button">
             Neue Bestellung</button>
         </section>
-        EOT;
+EOT;
         ?>    
 </body>
 

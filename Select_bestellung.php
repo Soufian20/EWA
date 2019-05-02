@@ -28,7 +28,7 @@ class Bestellung extends Page
 		$recordset->free();
 		return $pizza;
 	}
-}
+
 
 
 protected function generateView() {
@@ -55,5 +55,7 @@ public static function main() {
         echo $e->getMessage();
     }
 }
+}
 Bestellung::main();
+
 ?>

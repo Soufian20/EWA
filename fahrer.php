@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>$title</title>
     </head>
-    EOT;
+EOT;
 ?>
 
 <body>
@@ -64,7 +64,7 @@
         <br>
         </section>
         
-        EOT;
+EOT;
       
         ?>
         
