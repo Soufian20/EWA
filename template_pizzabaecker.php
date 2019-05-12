@@ -50,44 +50,57 @@ protected function generateView() {
 
     $this->generatePageHeader('Pizzabäcker');
     ?>
-<?php  ?>
+<?php 
+$prevBestellungID = '';
+?>
    <!-- // <?php print_r ($bestellungen); ?> -->
     <section class="Lieferstatus">
         <h2>Pizzabäcker (Lieferstatus)</h2>
         
         <?php for($i=0; $i < count($bestellungen); $i++){ 
-            if($bestellungen[$i]['Status'] == 'im ofen' || $bestellungen[$i]['Status'] == 'Bestellung eingegangen'){ ?>
+            if($bestellungen[$i]['Status'] == 'im ofen' || $bestellungen[$i]['Status'] == 'Bestellung eingegangen'){ 
+                $tmpB = $bestellungen[$i]['fBestellungsID']; 
+                if($tmpB != $prevBestellungID) { 
+                ?>
             <div class="Status">
-                <label>
+            <?php 
+                $prevBestellungID = $tmpB;?>
+                <span id = "Bestellnummer"> Bestellnummer: <?php echo $tmpB; ?></span>
+                <br><br> <?php
+                for( $a=0; $a <count($bestellungen); $a++){
+                    if($tmpB == $bestellungen[$a]['fBestellungsID']){ ?>
+                    
+                <div id = "pizza_name">
                     <?php 
-                        $sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$i]['fPizzaNummer'].";";
+                        $sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$a]['fPizzaNummer'].";";
                         $recordset = $this->database->query ($sql);
                         $bestellungen1 = $recordset->fetch_all(MYSQLI_ASSOC);
                         echo $bestellungen1[0]['PizzaName']; 
                     ?> 
-                    :<output><?php echo $bestellungen[$i]['Status'] ?></output>  
-                </label> 
+                      
+                </div> 
+                <div><?php echo 'Aktueller Status: ' .' '. $bestellungen[$a]['Status'] ?></div>
+                
                 <br>
-
-                <?php echo '<form id="form'.$i.'" action="template_pizzabaecker.php" method="POST" accept-charset="UTF-8">';?>
+                <?php if($bestellungen[$a]['Status'] == 'im ofen' || $bestellungen[$a]['Status'] == 'Bestellung eingegangen'){ 
+                 echo '<form id="form'.$i.'" action="template_pizzabaecker.php" method="POST" accept-charset="UTF-8">';?>
+                 
                 <input type="radio" name="status" value="im ofen"> Im Ofen<br>
-                <input type="radio" name="status" value="bereit zur Abholung"> Bereit zur Abholung<br>  
+                <input type="radio" name="status" value="bereit zur Abholung"> Bereit zur Abholung<br><br>  
                 <!-- <input type="submit" value="Bestellen" name=" <?php echo $i;?>"/>  -->
-                <button type="submit" value="<?php echo $i;?>" name="index_pizzanummer">Update</button>
+                <button type="submit" value="<?php echo $i;?>" name="index_pizzanummer">Update</button> <br><br><br>
                 </form>
+                <?php  } }
+                $prevBestellungID = $tmpB;
+            } ?>
             </div>
-        <?php }
-    } ?>
-        
-        
-        
-       
-        
-        
+        <?php } 
+            }
+        }
+     ?>
+   
         </section>
 
-        
-   
     <?php  
     $this->generatePageFooter();
 

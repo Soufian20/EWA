@@ -201,3 +201,14 @@ preis {
     margin-left: auto;
     margin-right: auto;  
 }
+
+#pizza_name{
+font-weight: bold;
+
+}
+
+#Bestellnummer{
+    font-weight: bold;
+    text-decoration: underline;
+    
+    }

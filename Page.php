@@ -99,7 +99,7 @@ abstract class Page
         $bestellung_active ='';
         $fahrer_active ='';
         $pizzabäcker_active ='';
-        $startseite_active ='';
+        $index_active ='';
         if($headline=='Pizzabäcker') {
             $pizzabäcker_active = 'active';
         }
@@ -112,8 +112,8 @@ abstract class Page
         if($headline=='Fahrer') {
             $fahrer_active = 'active';
         }
-        if($headline=='Startseite') {
-            $fahrer_active = 'active';
+        if($headline=='Index') {
+            $index_active = 'active';
         }
         header("Content-type: text/html; charset=UTF-8");
         
@@ -125,6 +125,10 @@ abstract class Page
         <html lang="de">
         <head>
             <meta charset="UTF-8"/>
+EOT;
+        if($headline == 'Fahrer') echo '<meta http-equiv="refresh" content="5; url=template_fahrer.php" />';   
+        if($headline == 'Pizzabäcker') echo '<meta http-equiv="refresh" content="5; url=template_pizzabaecker.php" />';   
+        echo <<<EOT
             <title>$headline</title>
             <link rel="stylesheet" type="text/css" href="styles.css">
         </head>
@@ -133,7 +137,7 @@ abstract class Page
          <nav class="header-nav"> 
             <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
             <ul>
-                <li class="$startseite_active"><a href="index.php">Startseite</a></li>
+                <li class="$index_active"><a href="template_index.php">Startseite</a></li>
                 <li class="$bestellung_active"><a href="template_bestellung.php">Bestellung</a></li>
                 <li class="$kunde_active"><a href="template_kunde.php">Kunde</a></li>
                 <li class="$pizzabäcker_active"><a href="template_pizzabaecker.php">Pizzabäcker</a></li>
