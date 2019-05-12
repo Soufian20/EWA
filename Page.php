@@ -95,6 +95,26 @@ abstract class Page
     protected function generatePageHeader($headline = "") 
     {
         $headline = htmlspecialchars($headline);
+        $kunde_active ='';
+        $bestellung_active ='';
+        $fahrer_active ='';
+        $pizzabäcker_active ='';
+        $startseite_active ='';
+        if($headline=='Pizzabäcker') {
+            $pizzabäcker_active = 'active';
+        }
+        if($headline=='Bestellung') {
+            $bestellung_active = 'active';
+        }
+        if($headline=='Kunde') {
+            $kunde_active = 'active';
+        }
+        if($headline=='Fahrer') {
+            $fahrer_active = 'active';
+        }
+        if($headline=='Startseite') {
+            $fahrer_active = 'active';
+        }
         header("Content-type: text/html; charset=UTF-8");
         
         // to do: output common beginning of HTML code 
@@ -108,7 +128,18 @@ abstract class Page
             <title>$headline</title>
             <link rel="stylesheet" type="text/css" href="styles.css">
         </head>
-        <body>    
+        <body> 
+        <!-- NAVIGATIONSLEISTE -->
+         <nav class="header-nav"> 
+            <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
+            <ul>
+                <li class="$startseite_active"><a href="index.php">Startseite</a></li>
+                <li class="$bestellung_active"><a href="template_bestellung.php">Bestellung</a></li>
+                <li class="$kunde_active"><a href="template_kunde.php">Kunde</a></li>
+                <li class="$pizzabäcker_active"><a href="template_pizzabaecker.php">Pizzabäcker</a></li>
+                <li class="$fahrer_active"><a href="template_fahrer.php">Fahrer</a></li>
+            </ul>
+         </nav>   
 EOT;
     }
 

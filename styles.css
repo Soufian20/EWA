@@ -12,7 +12,7 @@ body {
     margin: 0;
     font-family: 'Raleway', 'Lato', 'Helvetica Neue', 'Arial', sans-serif;
     font-size: 16px;
-    background:url(images/hintergrund.jpg) no-repeat center center fixed;
+   background:url(images/hintergrund.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -145,11 +145,21 @@ preis {
 
 .Lieferstatus {
     background-color: yellow;
-    width: 400px;
+    width: 500px;
     border: 3px red solid;
     text-align: center; 
     margin: auto;
-    height: 200px;
+    height: auto;
+}
+
+.Status {
+    background-color: yellow;
+    width: 400px;
+    border: 3px red solid;
+    text-align: center;  
+    margin: 20px auto 20px auto;
+    
+    height: auto;
 }
 
 /* === PIZZABÄCKER === */

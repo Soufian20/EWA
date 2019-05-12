@@ -1,0 +1,87 @@
+if($i <= count($bestellungen)){ 
+           if($bestellungen[$i]['fBestellungsID']!= $prevBestellungID){
+               echo $i;
+
+               $prevBestellungID= $bestellungen[$i]['fBestellungsID']?>
+                    <div class="Status">
+                        <label>
+                            <?php 
+                                $sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$i]['fPizzaNummer'].";";
+                                $recordset = $this->database->query ($sql);
+                                $bestellungen1 = $recordset->fetch_all(MYSQLI_ASSOC);
+                                echo $bestellungen1[0]['PizzaName']; 
+                            ?> 
+                            :<output><?php echo $bestellungen[$i]['Status'];  ?></output>  
+                        </label> 
+                        <br>                      
+                    </div>      
+    <?php
+        }}
+
+
+
+
+
+
+
+
+        if($bestellungen[$i]['fBestellungsID']!= $prevBestellungID){
+                $prevBestellungID= $bestellungen[$i]['fBestellungsID']?>
+            
+            <div class="Status">
+                <label>
+                    <?php 
+                        $sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$i]['fPizzaNummer'].";";
+                        $recordset = $this->database->query ($sql);
+                        $bestellungen1 = $recordset->fetch_all(MYSQLI_ASSOC);
+                        echo $bestellungen1[0]['PizzaName']; 
+                    ?> 
+                    :<output>
+                        <?php 
+                            echo $bestellungen[$i]['Status'];  
+                            //if($i < count($bestellungen)-1){$i++;}
+                            
+                        ?>
+                    </output>  
+                </label> 
+                <?php 
+                $tmp = $i+1;
+                if( $i < count($bestellungen) && $tmp != count($bestellungen)){
+                    if( $bestellungen[$tmp]['fBestellungsID'] != $bestellungen[$i]['fBestellungsID']) {
+                  ?> </div> <?php 
+                } 
+                $i = $tmp - 1;
+                } else {
+                    ?>  </div> <?php 
+                } ?>
+                <br>
+
+                
+            
+     <?php 
+     } else if($bestellungen[$i]['fBestellungsID']== $prevBestellungID){?>
+            </div>
+                <label>
+                    <?php 
+                        $sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$i]['fPizzaNummer'].";";
+                        $recordset = $this->database->query ($sql);
+                        $bestellungen1 = $recordset->fetch_all(MYSQLI_ASSOC);
+                        echo $bestellungen1[0]['PizzaName']; 
+                    ?> 
+                    :<output>
+                        <?php echo $bestellungen[$i]['Status'] ?>
+                    </output>  
+                </label> 
+                <?php if( $i < count($bestellungen) && $tmp != count($bestellungen)){
+                    $tmp = $i+1;
+                    if( $bestellungen[$tmp]['fBestellungsID'] != $bestellungen[$i]['fBestellungsID']) {
+                    ?> </div> <?php 
+                    } 
+                $i = $tmp - 1;
+                } else {
+                    ?>  </div> <?php 
+                } ?>
+                <br>
+                <?php
+        }
+    ?> 

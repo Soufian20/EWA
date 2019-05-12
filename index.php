@@ -1,11 +1,11 @@
 <?php
-    header ("Content-type: text/html");
-    $title="Startseite";
+header("Content-type: text/html");
+$title = "Startseite";
 ?>
 <!DOCTYPE html>
 <html lang="de">
 <?php
-    echo <<<EOT
+echo <<<EOT
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" href="styles.css">
@@ -18,7 +18,7 @@
     <?php
         echo <<<EOT
         <!-- NAVIGATIONSLEISTE -->
-         <nav class="header-nav"> 
+         <nav class="header-nav">
             <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
             <ul>
                 <li class="active"><a href="index.php">Startseite</a></li>
@@ -29,8 +29,8 @@
             </ul>
          </nav>
         <!-- Startseite -->
-        EOT;
-        ?>    
+EOT;
+?>
 </body>
 
 </html>

@@ -82,11 +82,70 @@ class PageTemplate extends Page
      * @return none
      */
     protected function generateView() 
-    {
+    {   
+        $orderstatus= 'ordered';
         $this->getViewData();
         $this->generatePageHeader('to do: change headline');
-        // to do: call generateView() for all members
-        // to do: output view of this page
+        $sql = "SELECT * FROM Angebot";
+        $result = $this->database->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo $row["PizzaNummer"]. "<br>";
+        echo $row["PizzaName"]. "<br>";
+        echo $row["Bilddatei"]. "<br>";
+        echo $row["Preis"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+        echo <<<HERE
+        
+        <!-- NAVIGATIONSLEISTE -->
+        <nav class="header-nav">  
+           <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
+           <ul>
+               <li><a href="index.php">Startseite</a></li>
+               <li><a href="bestellung.php">Bestellung</a></li>
+               <li><a href="kunde.php">Kunde</a></li>
+               <li class="active"><a href="pizzabaecker.php">Pizzabäcker</a></li>
+               <li><a href="fahrer.php">Fahrer</a></li>
+           </ul>
+        </nav>
+        <!-- Pizzabäcker -->
+        <section class="bestellte-pizzen">
+            <h2>Pizzabäcker (bestellte Pizzen)</h2>
+            <span>$orderstatus</span>
+            <span>Im Ofen</span>
+            <span>fertig</span>
+            <fieldset>
+                <ul class="radioButtons">
+                        <label for="Margherita">
+                            Margherita
+                            <input type="radio" id="Margherita" name="Margherita" />
+                            <input type="radio" id="Margherita" name="Margherita" />
+                            <input type="radio" id="Margherita" name="Margherita" />
+                        </label> 
+                        <br>
+                        <label for="Salami">
+                            Salami
+                            <input type="radio" id="Salami" name="Salami" />
+                            <input type="radio" id="Salami" name="Salami" />
+                            <input type="radio" id="Salami" name="Salami" />
+                        </label>
+                        <br>
+                        <label for="Hawaii">
+                            Hawaii
+                            <input type="radio" id="Hawaii" name="Hawaii" />
+                            <input type="radio" id="Hawaii" name="Hawaii" />
+                            <input type="radio" id="Hawaii" name="Hawaii" />
+                        </label>
+                </ul>
+            </fieldset>
+            </section>
+   
+HERE;
         $this->generatePageFooter();
     }
     
