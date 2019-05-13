@@ -22,10 +22,10 @@ EOT;
             <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
             <ul>
                 <li class="active"><a href="index.php">Startseite</a></li>
-                <li><a href="bestellung.php">Bestellung</a></li>
-                <li><a href="kunde.php">Kunde</a></li>
-                <li><a href="pizzabaecker.php">Pizzabäcker</a></li>
-                <li><a href="fahrer.php">Fahrer</a></li>
+                <li><a href="Seitenklasse_bestellung.php">Bestellung</a></li>
+                <li><a href="Seitenklasse_kunde.php">Kunde</a></li>
+                <li><a href="Seitenklasse_pizzabaecker.php">Pizzabäcker</a></li>
+                <li><a href="Seitenklasse_fahrer.php">Fahrer</a></li>
             </ul>
          </nav>
         <!-- Startseite -->

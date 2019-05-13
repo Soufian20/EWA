@@ -40,17 +40,6 @@ protected function generateView() {
 
     $numOfRecords = count($pizzen);
 	echo <<<EOT
-	<!-- NAVIGATIONSLEISTE -->
-         <nav class="header-nav"> 
-            <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
-            <ul>
-                <li><a href="index.php">Startseite</a></li>
-                <li class="active"><a href="Select_bestellung.php">Bestellung</a></li>
-                <li><a href="kunde.php">Kunde</a></li>
-                <li><a href="pizzabaecker.php">Pizzabäcker</a></li>
-                <li><a href="fahrer.php">Fahrer</a></li>
-            </ul>
-		</nav>
 		<!-- SPEISEKARTE -->
         <section class="Speisekarte">
 		<h2>Speisekarte</h2>

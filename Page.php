@@ -97,9 +97,29 @@ abstract class Page
         $headline = htmlspecialchars($headline);
         header("Content-type: text/html; charset=UTF-8");
         
-        // to do: output common beginning of HTML code 
-        // including the individual headline
-        // output HTML header
+        // für die Navigationsleiste
+        $kunde_active ='';
+        $bestellung_active ='';
+        $fahrer_active ='';
+        $pizzabäcker_active ='';
+        $startseite_active ='';
+        
+        if($headline=='Pizzabäcker') {
+            $pizzabäcker_active = 'active';
+        }
+        else if($headline=='Bestellung') {
+            $bestellung_active = 'active';
+        }
+        else if($headline=='Kunde') {
+            $kunde_active = 'active';
+        }
+        else if($headline=='Fahrer') {
+            $fahrer_active = 'active';
+        }
+        else if($headline=='Startseite') {
+            $fahrer_active = 'active';
+        }
+    
 		echo <<<EOT
         <!DOCTYPE html>
         <html lang="de">
@@ -108,7 +128,18 @@ abstract class Page
             <title>$headline</title>
             <link rel="stylesheet" type="text/css" href="styles.css">
         </head>
-        <body>    
+        <body>
+        <!-- NAVIGATIONSLEISTE -->
+         <nav class="header-nav"> 
+            <a href="index.php"><h1>Pi<span>zz</span>a</h1></a>
+            <ul>
+                <li class="$startseite_active"><a href="index.php">Startseite</a></li>
+                <li class="$bestellung_active"><a href="Seitenklasse_bestellung.php">Bestellung</a></li>
+                <li class="$kunde_active"><a href="Seitenklasse_kunde.php">Kunde</a></li>
+                <li class="$pizzabäcker_active"><a href="Seitenklasse_pizzabaecker.php">Pizzabäcker</a></li>
+                <li class="$fahrer_active"><a href="Seitenklasse_fahrer.php">Fahrer</a></li>
+            </ul>
+         </nav>
 EOT;
     }
 
