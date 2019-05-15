@@ -53,7 +53,7 @@ protected function generateView() {
 <?php 
 $prevBestellungID = '';
 ?>
-   <!-- // <?php print_r ($bestellungen); ?> -->
+   
     <section class="Lieferstatus">
         <h2>Pizzabäcker (Lieferstatus)</h2>
         

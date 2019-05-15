@@ -64,7 +64,7 @@ protected function generateView() {
             //{$pizza[$i]["PizzaName"]}
     ?>
 
-    <span class="gericht"><?php echo $i?>. <?php echo $pizza[$i]["PizzaName"]  ?> € <?php echo $pizza[$i]["Preis"]  ?></span>
+    <span class="gericht"><?php echo $pizza[$i]["PizzaNummer"]?>. <?php echo $pizza[$i]["PizzaName"]  ?> € <?php echo $pizza[$i]["Preis"]  ?></span>
     <br>
     <img alt="<?php echo $pizza[$i]["PizzaName"]?>" width="250" height="150" src="<?php echo $pizza[$i]["Bilddatei"]?>"> 
     <br>
@@ -73,7 +73,7 @@ protected function generateView() {
 
 
 
-
+    </section> 
 
     <br> 
     <!-- WARENKORB -->
@@ -120,11 +120,11 @@ protected function generateView() {
         </fieldset>  
         </form>
     </section>
-    <section id="berechnung"> 
+    
 
  
 
-    </section> 
+    
 
     <?php  
     $this->generatePageFooter();

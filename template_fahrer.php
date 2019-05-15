@@ -76,13 +76,14 @@ protected function generateView() {
                     ?> 
                       
                 </div> 
+                <?php  ?>
                 <div><?php echo 'Aktueller Status: ' .' '. $fertige_bestellungen[$a]['Status'] ?></div>
                 <br>
 
                 <?php echo '<form id="form'.$i.'" action="template_fahrer.php" method="POST" accept-charset="UTF-8">';?>
                 
                 <input type="radio" name="status" value="in Zustellung"> In Zustellung<br>
-                <input type="radio" name="status" value="zugestellt"> Zugestellt<br>  <br>  
+                <input type="radio" name="status" value="zugestellt">Zugestellt<br>  <br>  
                 <button type="submit" value="<?php echo $i;?>" name="index_pizzanummer">Status ändern</button>
                 <br>  <br> 
                 </form>
