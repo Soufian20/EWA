@@ -131,22 +131,39 @@ protected function processReceivedData() {
 		{
 			throw new Exception("INSERT fehlgeschlagen: ".$this->database->error);
 		}
-
-		/*for($bestelltePizzen as $pizza) 
+		
+		foreach($bestelltePizzen as $pizza) 
 		{
-        	$sql = "SELECT BestellungsID FROM Bestellung WHERE Bestellzeitpunkt='$created_date' union SELECT PizzaNummer FROM Angebot WHERE PizzaName='$pizza';";
+        	$sql = "SELECT BestellungID FROM bestellung WHERE Bestellzeitpunkt='$created_date'";
 			$recordset = $this->database->query($sql);
 			if (!$recordset)
 			{
 				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
 			}
-		
-			$pizza = $recordset->fetch_all(MYSQLI_ASSOC);
-        	$fbestnummer = $pizza[0]['BestellungsID'];
-        	$fpizzanummer = $pizza[1]['BestellungsID'];
-        	$sqli = "INSERT INTO `BestelltePizza` (`PizzaID`, `fBestellungsID`, `fPizzaNummer`, `Status`) VALUES (NULL, '$fbestnummer', '$fpizzanummer', 'Bestellung eingegangen');";
-        	mysqli_query($this->database, $sqli); 
-		}*/
+
+			$sql2 = "SELECT PizzaNummer FROM Angebot WHERE PizzaName='$pizza'";
+			$recordset2 = $this->database->query($sql2);
+			if (!$recordset2)
+			{
+				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
+			}
+			// Ergebniss von SELECT Abfrage in result array
+			$record = $recordset->fetch_assoc();
+			$record2 = $recordset2->fetch_assoc();
+
+			// INSERT in bestelltePizza
+        	$fbestnummer = $record['BestellungID'];
+			$fpizzanummer = $record2['PizzaNummer'];
+			
+        	$sqli = "INSERT INTO `BestelltePizza` (`PizzaID`, `fBestellungID`, `fPizzaNummer`, `Status`) VALUES (NULL, '$fbestnummer', '$fpizzanummer', 'Bestellung eingegangen');";
+			$recordset = mysqli_query($this->database, $sqli); 
+			if (!$recordset)
+			{	
+				throw new Exception("INSERT fehlgeschlagen: ".$this->database->error);
+			} 
+			
+		}
+			
 	}
 } 	
 
