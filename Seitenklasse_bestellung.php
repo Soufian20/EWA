@@ -162,8 +162,7 @@ protected function processReceivedData() {
 				throw new Exception("INSERT fehlgeschlagen: ".$this->database->error);
 			} 
 			
-		}
-			
+		}	
 	}
 } 	
 
