@@ -42,13 +42,14 @@ protected function generateView() {
 	$bestellungen = $this->getViewData();
 	echo <<<EOT
 	<!-- Pizzabäcker -->
-	<section class="bestellte-pizzen">
-		<h2>Pizzabäcker (bestellte Pizzen)</h2>
+	
+		<h2 id="head">Pizzabäcker (bestellte Pizzen)</h2>
 EOT;
 	for($i=0; $i < count($bestellungen); $i++)
 	{
 		if($bestellungen[$i]['Status'] == 'im Ofen' || $bestellungen[$i]['Status'] == 'Bestellung eingegangen')
 		{
+			echo '<section>';
 			echo '<div class=Baeckerstatus>';
 			// Hole Pizzaname von der bestellten Pizza
 			$sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$i]['fPizzaNummer'].";";
@@ -83,9 +84,8 @@ EOT;
 
 protected function processReceivedData() {
 	parent::processReceivedData();
-	if(isset($_POST['index_pizzanummer']))
+	// if(isset($_POST['index_pizzanummer'])
     {    
-		print_r($_POST);
 		if(isset($_POST['radio-status']))
 		{
 			if($_POST['radio-status']=="im Ofen" || $_POST['radio-status']=="fertig")
@@ -93,8 +93,6 @@ protected function processReceivedData() {
 				$status= $_POST['radio-status'];
 				$fbestellungid= $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID'];
 				$fpizzanummer= $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer'];
-				echo $fbestellungid;
-				echo $fpizzanummer;
 
 				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer ='$fpizzanummer'";
 				$recordset = $this->database->query($sql);

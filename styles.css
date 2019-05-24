@@ -167,13 +167,13 @@ preis {
 
 /* === PIZZABÄCKER === */
 
-.bestellte-pizzen {
+#head {
     background-color: yellow;
     width: 400px;
     border: 3px red solid;
     text-align: center; 
     margin: auto;
-    height: 250px;
+    height: 50px;
     
 }
 
@@ -202,21 +202,10 @@ preis {
     margin-right: 30px;
 }
 
-.bestellte-pizzen > fieldset {
-    border: 400px;
+.Baeckerstatus > form > fieldset {
+    border: 0;
+    padding: 0;
 }
-
-.bestellte-pizzen > fieldset > ul > label {
-    position: relative;
-    right: 100px;
-}
-
-.radioButtons > label > input {
-    position: relative;
-    left: 100px;
-    margin: 0.5rem;
-}
-
 
 /* === FAHRER === */
 
