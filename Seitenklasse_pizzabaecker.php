@@ -102,14 +102,6 @@ protected function processReceivedData() {
 				}   
 			}
 		}
-		
-        
-        
-         
- 
-        
-      
-    
     }
 } 	
 

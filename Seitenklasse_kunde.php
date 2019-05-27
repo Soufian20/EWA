@@ -78,8 +78,7 @@ EOT;
 					$record = $recordset->fetch_assoc();
 					echo '<label>'.$record['PizzaName'].':
 					<output>'.$bestellungen[$j]['Status'].'</output>  
-					</label> <br>';
-					
+					</label> <br>';		
 				}
 			}
 		}	
