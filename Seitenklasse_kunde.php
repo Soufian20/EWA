@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once './Page.php';
 
 class Bestellung extends Page
@@ -12,7 +13,7 @@ class Bestellung extends Page
     }
     
     protected function getViewData() {
-		$sql = "SELECT * FROM bestelltepizza";
+	$sql = "SELECT * FROM bestelltepizza WHERE fBestellungID={$_SESSION['BestellungID']}";
 
 		$recordset = $this->database->query ($sql);
 		if (!$recordset)
@@ -59,10 +60,10 @@ EOT;
 			echo '<div class="Bestellstatus">';
 			echo '<h2>Kunde (Lieferstatus)</h2>';
 			$prexBestellungID = $currentBestellungID;
-			echo '<span>Vorname: '. $record2["Vorname"].'</span><br>';
-			echo '<span>Nachname: '.$record2["Nachname"].'</span><br>';
-			echo '<span>Adresse: '.$record2["Adresse"].'</span><br>';
-			echo '<span>Bestellzeitpunkt: '.$record2["Bestellzeitpunkt"].'</span><br>';
+			echo '<span>Vorname: '. htmlspecialchars($record2["Vorname"]) .'</span><br>';
+			echo '<span>Nachname: '. htmlspecialchars($record2["Nachname"]) .'</span><br>';
+			echo '<span>Adresse: '. htmlspecialchars($record2["Adresse"]) .'</span><br>';
+			echo '<span>Bestellzeitpunkt: '. htmlspecialchars($record2["Bestellzeitpunkt"]) .'</span><br>';
 
 			for($j=0; $j < count($bestellungen); $j++)
 			{
@@ -76,8 +77,8 @@ EOT;
 							throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
 						}
 					$record = $recordset->fetch_assoc();
-					echo '<label>'.$record['PizzaName'].':
-					<output>'.$bestellungen[$j]['Status'].'</output>  
+					echo '<label>'. htmlspecialchars($record['PizzaName']) .':
+					<output>'. htmlspecialchars($bestellungen[$j]['Status']) .'</output>  
 					</label> <br>';		
 				}
 			}

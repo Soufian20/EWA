@@ -68,10 +68,10 @@ EOT;
 			{
 				// Alle Pizzen sind vom jeweiligen Kunden fertig
 				echo '<div class="Fahrerstatus">';
-				echo '<span>Vorname: '. $bestellungen[$i]["Vorname"].'</span><br>';
-				echo '<span>Nachname: '.$bestellungen[$i]["Nachname"].'</span><br>';
-				echo '<span>Adresse: '.$bestellungen[$i]["Adresse"].'</span><br>';
-				echo '<span>Bestellzeitpunkt: '.$bestellungen[$i]["Bestellzeitpunkt"].'</span><br>';
+				echo '<span>Vorname: '. htmlspecialchars($bestellungen[$i]["Vorname"]) .'</span><br>';
+				echo '<span>Nachname: '. htmlspecialchars($bestellungen[$i]["Nachname"]) .'</span><br>';
+				echo '<span>Adresse: '. htmlspecialchars($bestellungen[$i]["Adresse"]) .'</span><br>';
+				echo '<span>Bestellzeitpunkt: '. htmlspecialchars($bestellungen[$i]["Bestellzeitpunkt"]).'</span><br>';
 				echo <<<EOT
 				<span>unterwegs</span>
 				<span>geliefert</span>
@@ -94,46 +94,6 @@ EOT;
 				// Es sind nicht alle fertig also gehe weiter
 				continue;
 			}
-
-			// für Bestellungen die unterwegs sind
-			/* $sql4 = "SELECT COUNT(*) FROM bestelltepizza WHERE fBestellungID={$bestellungen[$i]['BestellungID']} AND Status='unterwegs'";
-			$recordset4 = $this->database->query($sql3);
-			if (!$recordset4)
-			{
-				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
-			}
-			$record4 = $recordset4->fetch_assoc();
-
-			if($record2['COUNT(fBestellungID)'] == $record4['COUNT(*)'])
-			{
-				// Alle Pizzen sind vom jeweiligen Kunden unterwegs
-				echo '<div class="Fahrerstatus">';
-				echo '<span>Vorname: '. $bestellungen[$i]["Vorname"].'</span><br>';
-				echo '<span>Nachname: '.$bestellungen[$i]["Nachname"].'</span><br>';
-				echo '<span>Adresse: '.$bestellungen[$i]["Adresse"].'</span><br>';
-				echo '<span>Bestellzeitpunkt: '.$bestellungen[$i]["Bestellzeitpunkt"].'</span><br>';
-				echo <<<EOT
-				<span>unterwegs</span>
-				<span>geliefert</span>
-				<br>
-				<form id="fomr'.$i.'" action="Seitenklasse_fahrer.php" method="POST" accept-charset="UTF-8">
-					<fieldset id="form'.$i.'">
-					<input type="radio" id="radio" name="radio-status" value="unterwegs"/>
-					<input type="radio" id="radio" name="radio-status" value="geliefert"/>
-					<br>
-					<button type="submit" value="$i" name="index_bestellnummer">Update</button>
-					</fieldset>	
-				</form>
-				</div> 
-				</section>
-EOT;
-				break;
-			}
-			else 
-			{
-				// Es sind nicht alle unterwegs also gehe weiter
-				continue;
-			} */
 			
 		}
 		
@@ -150,10 +110,9 @@ protected function processReceivedData() {
 		{
 			if($_POST['radio-status']=="unterwegs" || $_POST['radio-status']=="geliefert")
 			{
-				$status= $_POST['radio-status'];
-				$fbestellungid= $this->getViewData()[$_POST['index_bestellnummer']]['BestellungID'];
-				print_r($fbestellungid);
-				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID='$fbestellungid'";
+				$status = $_POST['radio-status'];
+				$fbestellungid = mysqli_real_escape_string($this->database,$this->getViewData()[$_POST['index_bestellnummer']]['BestellungID']);
+				$sql = "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID='$fbestellungid'";
 				$recordset = $this->database->query($sql);
 				if (!$recordset)
 				{

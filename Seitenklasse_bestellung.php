@@ -1,4 +1,6 @@
 <?php
+//Starte Session
+session_start();
 require_once './Page.php';
 
 class Bestellung extends Page
@@ -53,8 +55,8 @@ EOT;
 		{
 			//$this->insert_option("\t\t", $pizza);
 			echo "<span class='gericht'>{$pizza["PizzaNummer"]} {$pizza["PizzaName"]}</span> <br>";
-			   echo "<img alt='{$pizza["PizzaName"]}' width='250' height='150' src='{$pizza["Bilddatei"]}'> <br>";
-			   echo "<button class='gericht-button'>{$pizza["Preis"]} €</button> <br><br>";
+			echo "<img alt='{$pizza["PizzaName"]}' width='250' height='150' src='{$pizza["Bilddatei"]}'> <br>";
+			echo "<button class='gericht-button'>{$pizza["Preis"]} €</button> <br><br>";
 		}
 		echo "</section> <br>";
 
@@ -65,7 +67,7 @@ EOT;
         <section class="Warenkorb">
             <h2>Warenkorb</h2>
             <form id="form1" action='Seitenklasse_bestellung.php' method="POST" accept-charset="UTF-8"> <!--https://echo.fbi.h-da.de/-->
-			<select tabindex="1" name="Bestellungen[]" size="3" multiple>
+			<select tabindex="1" name="Bestellungen[]" size="3" multiple required>
 EOT;
 				foreach($pizzen as $pizza)
 				{
@@ -152,9 +154,12 @@ protected function processReceivedData() {
 			$record2 = $recordset2->fetch_assoc();
 
 			// INSERT in bestelltePizza
-        	$fbestnummer = $record['BestellungID'];
-			$fpizzanummer = $record2['PizzaNummer'];
+			$fbestnummer = mysqli_real_escape_string($this->database, $record['BestellungID']);
+			$fpizzanummer = mysqli_real_escape_string($this->database, $record2['PizzaNummer']);
 			
+			//Setzte Sessionvariable
+			$_SESSION['BestellungID'] = $fbestnummer;
+
         	$sqli = "INSERT INTO `BestelltePizza` (`PizzaID`, `fBestellungID`, `fPizzaNummer`, `Status`) VALUES (NULL, '$fbestnummer', '$fpizzanummer', 'Bestellung eingegangen');";
 			$recordset = mysqli_query($this->database, $sqli); 
 			if (!$recordset)

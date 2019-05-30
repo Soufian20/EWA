@@ -52,15 +52,15 @@ EOT;
 			echo '<section>';
 			echo '<div class=Baeckerstatus>';
 			// Hole Pizzaname von der bestellten Pizza
-			$sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$i]['fPizzaNummer'].";";
+			$sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =". mysqli_real_escape_string($this->database,$bestellungen[$i]['fPizzaNummer']).";";
 			$recordset = $this->database->query($sql);
 			if (!$recordset)
 			{
 				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
 			}
 			$record = $recordset->fetch_assoc();
-			echo ' BestellungID: '.$bestellungen[$i]['fBestellungID'].' <br>';
-			echo ''.$record['PizzaName'].': '.$bestellungen[$i]['Status'].'<br><br>';
+			echo ' BestellungID: '. htmlspecialchars($bestellungen[$i]['fBestellungID']) .' <br>';
+			echo ''. htmlspecialchars($record['PizzaName']) .': '. htmlspecialchars($bestellungen[$i]['Status']) .'<br><br>';
 			echo <<<EOT
 			<span>Im Ofen</span>
 			<span>fertig</span>
@@ -91,10 +91,10 @@ protected function processReceivedData() {
 			if($_POST['radio-status']=="im Ofen" || $_POST['radio-status']=="fertig")
 			{
 				$status= $_POST['radio-status'];
-				$fbestellungid= $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID'];
-				$fpizzanummer= $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer'];
+				$fbestellungid = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID']);
+				$fpizzanummer = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer']);
 
-				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer ='$fpizzanummer'";
+				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer = '$fpizzanummer'";
 				$recordset = $this->database->query($sql);
 				if (!$recordset)
 				{
