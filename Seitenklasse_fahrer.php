@@ -12,7 +12,13 @@ class Bestellung extends Page
     }
     
     protected function getViewData() {
-		$sql = "SELECT * FROM bestellung";
+		$sql = "SELECT b.BestellungID, b.Vorname, b.Nachname, b.Adresse, Bestellzeitpunkt, a.PizzaName, be.Status,SUM(a.Preis) AS Gesamtpreis
+				FROM 
+					bestellung b, angebot a, bestelltepizza be
+				WHERE b.BestellungID = be.fBestellungID
+				AND be.fPizzaNummer = a.PizzaNummer
+				AND (be.Status = 'fertig' OR be.Status = 'unterwegs')
+				GROUP BY BestellungID";
 
 		$recordset = $this->database->query ($sql);
 		if (!$recordset)
@@ -44,34 +50,15 @@ EOT;
 	
 	 for($i=0; $i < count($bestellungen); $i++)
 	{
-		// Zähle wie viele Bestellungen der jeweilige Kunde bestellt hat
-		$sql2 = "SELECT COUNT(fBestellungID) FROM bestelltepizza WHERE fBestellungID={$bestellungen[$i]['BestellungID']}";
-		$recordset2 = $this->database->query($sql2);
-			if (!$recordset2)
-			{
-				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
-			}
-		$record2 = $recordset2->fetch_assoc();
 		
-		// Checke ob alle Pizzen vom jeweiligen Kunden fertig oder unterwegs sind
-		for ($j=0; $j < $record2['COUNT(fBestellungID)']; $j++) 
-		{ 
-			$sql3 = "SELECT COUNT(*) FROM bestelltepizza WHERE fBestellungID={$bestellungen[$i]['BestellungID']} AND (Status='fertig' OR Status='unterwegs')";
-			$recordset3 = $this->database->query($sql3);
-			if (!$recordset3)
-			{
-				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
-			}
-			$record3 = $recordset3->fetch_assoc();
-			
-			if($record2['COUNT(fBestellungID)'] == $record3['COUNT(*)'])
-			{
 				// Alle Pizzen sind vom jeweiligen Kunden fertig
 				echo '<div class="Fahrerstatus">';
 				echo '<span>Vorname: '. htmlspecialchars($bestellungen[$i]["Vorname"]) .'</span><br>';
 				echo '<span>Nachname: '. htmlspecialchars($bestellungen[$i]["Nachname"]) .'</span><br>';
 				echo '<span>Adresse: '. htmlspecialchars($bestellungen[$i]["Adresse"]) .'</span><br>';
 				echo '<span>Bestellzeitpunkt: '. htmlspecialchars($bestellungen[$i]["Bestellzeitpunkt"]).'</span><br>';
+				echo '<span>Gesamtpreis: '. htmlspecialchars($bestellungen[$i]["Gesamtpreis"]).'</span><br>';
+				echo '<span>Status: '. htmlspecialchars($bestellungen[$i]["Status"]).'</span><br>';
 				echo <<<EOT
 				<span>unterwegs</span>
 				<span>geliefert</span>
@@ -87,15 +74,7 @@ EOT;
 				</div> 
 				</section>
 EOT;
-				break;
-			}
-			else 
-			{
-				// Es sind nicht alle fertig also gehe weiter
-				continue;
-			}
-			
-		}
+	
 		
 	} 
 

@@ -13,7 +13,10 @@ class Bestellung extends Page
     }
     
     protected function getViewData() {
-	$sql = "SELECT * FROM bestelltepizza WHERE fBestellungID={$_SESSION['BestellungID']}";
+	$sql = "SELECT * FROM bestelltepizza 
+			INNER JOIN bestellung ON bestelltepizza.fBestellungID = bestellung.BestellungID
+			INNER JOIN Angebot ON bestelltepizza.fPizzaNummer = angebot.PizzaNummer
+			WHERE fBestellungID={$_SESSION['BestellungID']}";
 
 		$recordset = $this->database->query ($sql);
 		if (!$recordset)
@@ -41,54 +44,30 @@ protected function generateView() {
 EOT;
 	$prexBestellungID = ''; // Bestellung davor
 	for($i=0; $i < count($bestellungen); $i++)
-	{
-		
-
-		// Hole Kundendaten
-		$sql2 = "SELECT * FROM Bestellung WHERE BestellungID={$bestellungen[$i]['fBestellungID']}";
-		$recordset2 = $this->database->query($sql2);
-			if (!$recordset2)
-			{
-				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
-			}
-		$record2 = $recordset2->fetch_assoc();
-		
-
+	{	
 		$currentBestellungID = $bestellungen[$i]['fBestellungID'];
 		if ($currentBestellungID != $prexBestellungID)
 		{
 			echo '<div class="Bestellstatus">';
 			echo '<h2>Kunde (Lieferstatus)</h2>';
 			$prexBestellungID = $currentBestellungID;
-			echo '<span>Vorname: '. htmlspecialchars($record2["Vorname"]) .'</span><br>';
-			echo '<span>Nachname: '. htmlspecialchars($record2["Nachname"]) .'</span><br>';
-			echo '<span>Adresse: '. htmlspecialchars($record2["Adresse"]) .'</span><br>';
-			echo '<span>Bestellzeitpunkt: '. htmlspecialchars($record2["Bestellzeitpunkt"]) .'</span><br>';
+			echo '<span>Vorname: '. htmlspecialchars($bestellungen[$i]["Vorname"]) .'</span><br>';
+			echo '<span>Nachname: '. htmlspecialchars($bestellungen[$i]["Nachname"]) .'</span><br>';
+			echo '<span>Adresse: '. htmlspecialchars($bestellungen[$i]["Adresse"]) .'</span><br>';
+			echo '<span>Bestellzeitpunkt: '. htmlspecialchars($bestellungen[$i]["Bestellzeitpunkt"]) .'</span><br>';
 
 			for($j=0; $j < count($bestellungen); $j++)
 			{
 				if($currentBestellungID == $bestellungen[$j]['fBestellungID'])
 				{
-					// Hole PizzaName
-					$sql = "SELECT PizzaName FROM Angebot WHERE PizzaNummer=".$bestellungen[$j]['fPizzaNummer'].";";
-					$recordset = $this->database->query($sql);
-						if (!$recordset)
-						{
-							throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
-						}
-					$record = $recordset->fetch_assoc();
-					echo '<label>'. htmlspecialchars($record['PizzaName']) .':
-					<output>'. htmlspecialchars($bestellungen[$j]['Status']) .'</output>  
+					echo '<label>'. htmlspecialchars($bestellungen[$j]['PizzaName']) .':
+					<output>'. htmlspecialchars($bestellungen[$j]['Status']) .'</output> 
 					</label> <br>';		
 				}
 			}
-		}	
-		
-		
-		echo '</div>';
-			
+		}			
+		echo '</div>';			
 	} 
-
 	echo '</section>';	
     
     $this->generatePageFooter();

@@ -12,7 +12,9 @@ class Bestellung extends Page
     }
     
     protected function getViewData() {
-		$sql = "SELECT * FROM bestelltepizza";
+		$sql = "SELECT fBestellungID, PizzaName, fPizzaNummer, Status FROM bestelltepizza
+		INNER JOIN angebot ON bestelltepizza.fPizzaNummer = angebot.PizzaNummer
+		ORDER BY fBestellungID";
 
 		$recordset = $this->database->query ($sql);
 		if (!$recordset)
@@ -51,16 +53,8 @@ EOT;
 		{
 			echo '<section>';
 			echo '<div class=Baeckerstatus>';
-			// Hole Pizzaname von der bestellten Pizza
-			$sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =". mysqli_real_escape_string($this->database,$bestellungen[$i]['fPizzaNummer']).";";
-			$recordset = $this->database->query($sql);
-			if (!$recordset)
-			{
-				throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
-			}
-			$record = $recordset->fetch_assoc();
 			echo ' BestellungID: '. htmlspecialchars($bestellungen[$i]['fBestellungID']) .' <br>';
-			echo ''. htmlspecialchars($record['PizzaName']) .': '. htmlspecialchars($bestellungen[$i]['Status']) .'<br><br>';
+			echo ''. htmlspecialchars($bestellungen[$i]['PizzaName']) .': '. htmlspecialchars($bestellungen[$i]['Status']) .'<br><br>';
 			echo <<<EOT
 			<span>Im Ofen</span>
 			<span>fertig</span>

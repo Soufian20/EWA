@@ -157,7 +157,7 @@ protected function processReceivedData() {
 			$fbestnummer = mysqli_real_escape_string($this->database, $record['BestellungID']);
 			$fpizzanummer = mysqli_real_escape_string($this->database, $record2['PizzaNummer']);
 			
-			//Setzte Sessionvariable
+			//Setze Sessionvariable
 			$_SESSION['BestellungID'] = $fbestnummer;
 
         	$sqli = "INSERT INTO `BestelltePizza` (`PizzaID`, `fBestellungID`, `fPizzaNummer`, `Status`) VALUES (NULL, '$fbestnummer', '$fpizzanummer', 'Bestellung eingegangen');";
