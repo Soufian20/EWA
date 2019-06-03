@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 require_once './Page.php';
 
 class Kunde extends Page
@@ -13,8 +14,10 @@ class Kunde extends Page
     }
     
     protected function getViewData() {
-        $sql = "SELECT * FROM bestelltePizza;";
-       
+        if(isset($_SESSION['BestellungsID'])){
+        $sql = "SELECT * FROM bestelltePizza WHERE fBestellungsID = ".$_SESSION['BestellungsID'].";";
+    }
+       else $sql = "SELECT * FROM bestelltePizza;";
 
         $recordset = $this->database->query ($sql);
         $numRows = mysqli_num_rows($recordset);
@@ -38,7 +41,8 @@ class Kunde extends Page
             echo $row["Preis"]. "<br>";
         } */
         
-		$recordset->free();
+        $recordset->free();
+       
 		return $bestellungen;
 	}
 
@@ -53,14 +57,14 @@ protected function generateView() {
     $prevBestellungID = '';
     ?>
 <?php  ?>
-   <!-- // <?php print_r ($bestellungen); ?> -->
+  
     <section class="Lieferstatus">
         <h2>Kunde (Lieferstatus)</h2>
         
         <?php for($i=0; $i <count($bestellungen); $i++){ ?>
         
         <?php 
-        $tmpB = $bestellungen[$i]['fBestellungsID']; 
+        $tmpB = htmlspecialchars($bestellungen[$i]['fBestellungsID']); 
         if($tmpB != $prevBestellungID) { ?>
             <div class="Status">
                 <?php 
@@ -75,11 +79,11 @@ protected function generateView() {
                         $sql = "SELECT PizzaName FROM Angebot WHERE PizzaNummer =".$bestellungen[$a]['fPizzaNummer'].";";
                         $recordset = $this->database->query ($sql);
                         $bestellungen1 = $recordset->fetch_all(MYSQLI_ASSOC);
-                        echo $bestellungen1[0]['PizzaName']; 
+                        echo htmlspecialchars($bestellungen1[0]['PizzaName']); 
                     ?> 
                     :<output>
                         <?php 
-                            echo $bestellungen[$a]['Status'];  
+                            echo htmlspecialchars($bestellungen[$a]['Status']);  
                         ?>
                     </output>  
                 </label> 
@@ -101,27 +105,7 @@ protected function generateView() {
 
 protected function processReceivedData() {
     parent::processReceivedData();
-   
-    if(isset($_POST['status']))
-    {    $status= $_POST['status'];
-        //echo $status ;
-        $fbestellungsid= $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungsID'];
-        $fpizzanummer= $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer'];
-       // print_r($fpizzanummer) ;
-
-        
-        $sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungsID = '$fbestellungsid' AND fPizzaNummer ='$fpizzanummer'";
-        mysqli_query($this->database, $sql);
-        //print_r($bestelltePizzen);
-
-        
-      
-    
-    }
-        
-
-        //$this->database->query($sql);
-    //print_r($Adresse);
+  
     } 
     
 

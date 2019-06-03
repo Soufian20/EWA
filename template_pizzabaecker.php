@@ -12,10 +12,11 @@ class Pizzabaecker extends Page
     }
     
     protected function getViewData() {
-        $sql = "SELECT * FROM bestelltePizza;";
-       
+        $sql = "SELECT * FROM BestelltePizza;";
+        
 
         $recordset = $this->database->query ($sql);
+        
         $numRows = mysqli_num_rows($recordset);
 		if (!$recordset)
 			throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
@@ -27,8 +28,10 @@ class Pizzabaecker extends Page
             //echo json_encode($row);   
             //print_r($row) ; 
         } */
+     
 
         $bestellungen = $recordset->fetch_all(MYSQLI_ASSOC);
+       
         
 /* 		while($row = $recordset->fetch_assoc()) {
             echo $row["PizzaNummer"]. "<br>";
@@ -65,7 +68,7 @@ $prevBestellungID = '';
             <div class="Status">
             <?php 
                 $prevBestellungID = $tmpB;?>
-                <span id = "Bestellnummer"> Bestellnummer: <?php echo $tmpB; ?></span>
+                <span id = "Bestellnummer"> Bestellnummer: <?php echo htmlspecialchars($tmpB); ?></span>
                 <br><br> <?php
                 for( $a=0; $a <count($bestellungen); $a++){
                     if($tmpB == $bestellungen[$a]['fBestellungsID']){ ?>
@@ -75,11 +78,11 @@ $prevBestellungID = '';
                         $sql = "SELECT PizzaName FROM Angebot WHERE Pizzanummer =".$bestellungen[$a]['fPizzaNummer'].";";
                         $recordset = $this->database->query ($sql);
                         $bestellungen1 = $recordset->fetch_all(MYSQLI_ASSOC);
-                        echo $bestellungen1[0]['PizzaName']; 
+                        echo htmlspecialchars($bestellungen1[0]['PizzaName']); 
                     ?> 
                       
                 </div> 
-                <div><?php echo 'Aktueller Status: ' .' '. $bestellungen[$a]['Status'] ?></div>
+                <div><?php echo 'Aktueller Status: ' .' '. htmlspecialchars($bestellungen[$a]['Status']) ?></div>
                 
                 <br>
                 <?php if($bestellungen[$a]['Status'] == 'im ofen' || $bestellungen[$a]['Status'] == 'Bestellung eingegangen'){ 
@@ -113,10 +116,10 @@ protected function processReceivedData() {
     parent::processReceivedData();
    
     if(isset($_POST['status']))
-    {    $status= $_POST['status'];
+    {    $status= mysqli_real_escape_string($this->database, $_POST['status']);
         //echo $status ;
-        $fbestellungsid= $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungsID'];
-        $fpizzanummer= $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer'];
+        $fbestellungsid= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungsID']);
+        $fpizzanummer= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer']);
        // print_r($fpizzanummer) ;
 
         

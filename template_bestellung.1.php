@@ -50,7 +50,7 @@ protected function generateView() {
     $sql = "SELECT BestellungsID FROM Bestellung WHERE BestellungsID=(SELECT max(BestellungsID) FROM Bestellung);"; 
     $recordset = $this->database->query ($sql);
     $pizza23 = $recordset->fetch_all(MYSQLI_ASSOC);
-    print_r($pizza23);
+    //print_r($pizza23);
     //echo $pizza[1]["PizzaName"];
     $numOfRecords = count($pizza);
     $this->generatePageHeader('Bestellung');
@@ -68,10 +68,18 @@ protected function generateView() {
             // echo $pizza[$i]["PizzaName"];
             //{$pizza[$i]["PizzaName"]}
     ?>
-
-    <span class="gericht"><?php echo $pizza[$i]["PizzaNummer"]?>. <?php echo $pizza[$i]["PizzaName"]  ?> € <?php echo $pizza[$i]["Preis"]  ?></span>
+    <div style="cursor: pointer;" onclick="zumWarenkorb(<?php echo ($i+1); ?>)">
+        <span class="gericht">
+            <?php echo $pizza[$i]["PizzaNummer"]?>. 
+            <span id= "pizza<?php echo ($i+1); ?>"><?php echo $pizza[$i]["PizzaName"]?></span>
+             € 
+            <span id = "price<?php echo ($i+1); ?>" data-price="<?php echo $pizza[$i]["Preis"]  ?>">
+            <?php echo $pizza[$i]["Preis"]  ?>
+        </span>
+    </span>
     <br>
-    <img alt="<?php echo $pizza[$i]["PizzaName"]?>" width="250" height="150" src="<?php echo $pizza[$i]["Bilddatei"]?>"> 
+    <img alt="<?php echo $pizza[$i]["PizzaName"]?>" width="250" height="150" src="<?php echo $pizza[$i]["Bilddatei"]?>">
+    </div> 
     <br>
     <?php } ?>
 
@@ -82,25 +90,51 @@ protected function generateView() {
 
     <br> 
     <!-- WARENKORB -->
-    <section class="Warenkorb">
-        <h2>Warenkorb</h2>
-        <form id="form1" action='template_bestellung.php' method="POST" accept-charset="UTF-8"> <!--https://echo.fbi.h-da.de/-->
-        <select required tabindex="1" name="Bestellungen[]" size="3" multiple>
-        <?php  
-        for($i=0; $i < count($pizza); $i++) {
-            echo '<option>'.$pizza[$i]["PizzaName"].'</option>'; 
-        }
-        
-        ?>
-        </select>
-        <br>
-        <br>
+    <section class="Warenkorb id= "warenkorb">
+    <!-- <table>
+        <tr>
+            <th>Pizzen</th>
+            <th>Preis</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td id="pizza1">Pizza Salami</td>
+            <td><span id = "price1" data-price="1">18.43</span> €</td>
+            <td><input type="button" value="in den Warenkorb" onclick="zumWarenkorb(1);" />
+        </tr>
+        <tr>
+            <td id="pizza2">Pizza Magherita</td>
+            <td><span id = "price2" data-price="2" >2</span> €</td>
+            <td><input type="button" value="in den Warenkorb" onclick="zumWarenkorb(2);" />
+        </tr>
+        <tr>
+            <td id="pizza3">Pizza Soufian</td>
+            <td><span id = "price3" data-price="3">3</span> €</td>
+            <td><input type="button" value="in den Warenkorb" onclick="zumWarenkorb(3);" />
+        </tr>
+        <tr>
+            <td id="pizza4">Pizza Hawaii</td>
+            <td><span id = "price4" data-price="4">4</span> €</td>
+            <td><input type="button" value="in den Warenkorb" onclick="zumWarenkorb(4);" />
+        </tr>
+    </table>
+     -->
+    <h2>Warenkorb</h2>
+    <h3>Sie haben 0 Pizzen ausgewähl</h3>
+    <ul id="liste"></ul>
+    <div id="list1"></div>
+
+    
+
+
+
+
     </section>
 
         <br> 
     <section class="Formular">
-        <label id="Gesamtpreis" for="Gesamtpreis">Gesamtpreis:
-            <output>14.50€</output>  
+        <label  for="Gesamtpreis">Gesamtpreis:
+            <output id="Gesamtpreis">0.00€</output>  
         </label>
         <fieldset>
                 <span>Bitte machen Sie Ihre Eingaben</span> <br>                       
@@ -119,9 +153,10 @@ protected function generateView() {
                     <input type="text" id="Adresse" name="Adresse" value="" placeholder="Ihre Adresse" maxlength="15" required/> <!-- required: Feld darf nicht leer bleiben-->
                 </label>
                 <br>
-                <input form="form1" type="reset" value="Alles Löschen"/>
-                <input form="form1" type="reset" value="Auswahl Löschen"/>
-                <input type="submit" name ="bestellen_btn" value="Bestellen"/>                        
+                <button id="deleteContact" onclick="deleteContact()">Kontaktdaten zurücksetzen</button>
+                <button id="deleteCart" onclick="deleteCart()">Warenkorb leeren</button>
+                <button id="button123"  onclick="pushToDB()">Absenden</button>
+              
         </fieldset>  
         </form>
     </section>
@@ -154,8 +189,8 @@ protected function processReceivedData() {
         $sql = "SELECT BestellungsID FROM Bestellung WHERE Bestellzeitpunkt='$created_date' union SELECT PizzaNummer FROM Angebot WHERE PizzaName='$bestelltePizzen[$i]';";
         $recordset = $this->database->query ($sql);
         $pizza = $recordset->fetch_all(MYSQLI_ASSOC);
-        $fbestnummer = mysqli_real_escape_string($this->database, $pizza[0]['BestellungsID']);
-        $fpizzanummer = mysqli_real_escape_string($this->database, $pizza[1]['BestellungsID']);
+        $fbestnummer = $pizza[0]['BestellungsID'];
+        $fpizzanummer = $pizza[1]['BestellungsID'];
         $sqli = "INSERT INTO `BestelltePizza` (`PizzaID`, `fBestellungsID`, `fPizzaNummer`, `Status`) VALUES (NULL, '$fbestnummer', '$fpizzanummer', 'Bestellung eingegangen');";
         mysqli_query($this->database, $sqli);
         $sql = "SELECT BestellungsID FROM Bestellung WHERE BestellungsID=(SELECT max(BestellungsID) FROM Bestellung);"; 

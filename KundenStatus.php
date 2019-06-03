@@ -1,4 +1,5 @@
 <?php	
+session_start();
 require_once './Page.php';
 
 
@@ -40,7 +41,29 @@ class PageTemplate extends Page
      */
     protected function getViewData()
     {
+        if(isset($_SESSION['BestellungsID'])){
+            $sql = "SELECT * FROM bestelltePizza WHERE fBestellungsID = ".$_SESSION['BestellungsID'].";";
+       
+    
+            $recordset = $this->database->query ($sql);
         
+            if (!$recordset)
+                throw new Exception("Abfrage fehlgeschlagen: ".$this->database->error);
+                    
+         
+    
+            $bestellungen = $recordset->fetch_all(MYSQLI_ASSOC);
+            
+    /* 		while($row = $recordset->fetch_assoc()) {
+                echo $row["PizzaNummer"]. "<br>";
+                echo $row["PizzaName"]. "<br>";
+                echo $row["Bilddatei"]. "<br>";
+                echo $row["Preis"]. "<br>";
+            } */
+            
+            $recordset->free(); 
+        }  
+        return $bestellungen;
     }
     
  
@@ -48,17 +71,29 @@ class PageTemplate extends Page
     protected function generateView() 
     {   
         
-        $this->getViewData();
-        $this->generatePageHeader();
-        $this->generatePageFooter();
+        // $this->getViewData();
+        // $this->generatePageHeader();
+        // $this->generatePageFooter();
     }
     
     
     protected function processReceivedData() 
     {
         parent::processReceivedData();
+        $array = $this->getViewData();
+        
        
-    }
+        header("Content-Type: application/json; charset=UTF-8");
+        $serializedData = json_encode($array);
+        echo $serializedData;
+      
+
+
+    
+    
+    
+ 
+}
 
   
     public static function main() 

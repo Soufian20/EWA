@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once './Page.php';
 
 class Index extends Page
@@ -12,6 +13,7 @@ class Index extends Page
     }
     
     protected function getViewData() {
+        
        
 	}
 
@@ -19,8 +21,22 @@ class Index extends Page
 
 protected function generateView() {
     
-    $this->generatePageHeader('Index');
     
+    $this->generatePageHeader('Index');
+    ?>
+    <div><form action="template_index.php" method="post">
+    <input type="submit" name="someAction" value="GO" />
+    </form></div>
+
+
+    <?php
+
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction']))
+{
+    $_SESSION = array(); 
+    echo("Hat geklappt!");  
+}
+
 
 
     
