@@ -45,7 +45,7 @@ protected function generateView() {
 	echo <<<EOT
 	<!-- Pizzabäcker -->
 	
-		<h2 id="head">Pizzabäcker (bestellte Pizzen)</h2>
+		<h2 class="head">Pizzabäcker (bestellte Pizzen)</h2>
 EOT;
 	for($i=0; $i < count($bestellungen); $i++)
 	{
@@ -71,8 +71,9 @@ EOT;
 EOT;
 
 		}
-		echo '</section>';	
+			
 	}
+	echo '</section>';
     $this->generatePageFooter();
 }
 
@@ -86,9 +87,9 @@ protected function processReceivedData() {
 			{
 				$status= $_POST['radio-status'];
 				$fbestellungid = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID']);
-				$fpizzanummer = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer']);
+				$pizzaID = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['PizzaID']);
 
-				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer = '$fpizzanummer'";
+				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND PizzaID = '$pizzaID'";
 				$recordset = $this->database->query($sql);
 				if (!$recordset)
 				{
