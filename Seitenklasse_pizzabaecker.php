@@ -12,7 +12,7 @@ class Bestellung extends Page
     }
     
     protected function getViewData() {
-		$sql = "SELECT fBestellungID, PizzaName, fPizzaNummer, Status FROM bestelltepizza
+		$sql = "SELECT fBestellungID, PizzaName, fPizzaNummer, PizzaID, Status FROM bestelltepizza
 		INNER JOIN angebot ON bestelltepizza.fPizzaNummer = angebot.PizzaNummer
 		ORDER BY fBestellungID";
 
@@ -48,8 +48,10 @@ protected function generateView() {
 		<h2>Pizzabäcker (Lieferstatus)</h2>
 		
 EOT;
+	$checked = '';
+	
 	for($i=0; $i < count($bestellungen); $i++)
-	{
+	{	if($bestellungen[$i]['Status'] == 'im Ofen') $checked = ' checked';
 		if($bestellungen[$i]['Status'] == 'im Ofen' || $bestellungen[$i]['Status'] == 'Bestellung eingegangen')
 		{
 			
@@ -62,7 +64,7 @@ EOT;
 			<br>
 			<form id="fomr'.$i.'" action="Seitenklasse_pizzabaecker.php" method="POST" accept-charset="UTF-8">
 				<fieldset id="form'.$i.'">
-				<input type="radio" id="radio" name="radio-status" value="im Ofen"/>
+				<input type="radio" id="radio" name="radio-status" value="im Ofen" $checked/>
 				<input type="radio" id="radio" name="radio-status" value="fertig"/>
 				<br>
 				<button type="submit" value="$i" name="index_pizzanummer">Update</button>
@@ -90,10 +92,10 @@ protected function processReceivedData() {
 				print_r($_POST);
 				$fbestellungid = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID']);
 				echo ($fbestellungid);
-				$fpizzanummer = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer']);
-				echo ($fpizzanummer);
+				$pizzaID = mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['PizzaID']);
+				echo ($pizzaID);
 
-				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer = '$fpizzanummer'";
+				$sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND PizzaID = '$pizzaID'";
 				$recordset = $this->database->query($sql);
 				if (!$recordset)
 				{

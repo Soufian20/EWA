@@ -119,11 +119,11 @@ protected function processReceivedData() {
     {    $status= mysqli_real_escape_string($this->database, $_POST['status']);
         //echo $status ;
         $fbestellungid= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID']);
-        $fpizzanummer= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer']);
+        $pizzaid= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['PizzaID']);
        // print_r($fpizzanummer) ;
 
         
-        $sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer ='$fpizzanummer'";
+        $sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND PizzaID ='$pizzaid'";
         mysqli_query($this->database, $sql);
         //print_r($bestelltePizzen);
 
