@@ -174,7 +174,7 @@ function pushToDB(){
 
         }
         alert('Vielen Dank für ihre Bestellung ---> Sie werden nun zur Übersicht weitergeleitet');
-        window.open("http://localhost//EWA%20Praktikum%20/Praktikum%202/EWA/Seitenklasse_kunde.php"); 
+        window.open("Seitenklasse_kunde.php"); 
         //alert('Vielen Dank für ihre Bestellung ---> Sie werden nun zur Übersicht weitergeleitet');
        
     } 
