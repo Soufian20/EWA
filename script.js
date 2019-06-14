@@ -1,4 +1,24 @@
+
+"use strict";
+
 var warenkorb = [];
+
+// $(document).ready(function(){
+//     $('#menu-icon').on('click', function(){
+//       $('.navbar').toggleClass('expand');
+//       return false;
+//     });
+//   });
+
+
+  document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById('menu-icon').addEventListener('click', function(){
+        var element = document.getElementsByClassName("navbar");
+        element[0].classList.toggle("expand");
+        return false;
+      });
+  });
+
 
 function zumWarenkorb(nr) {
     var pizza = {name: document.getElementById('pizza' + nr).innerHTML, price : parseFloat(document.getElementById('price' + nr).dataset.price)};
@@ -21,36 +41,58 @@ function zumWarenkorb(nr) {
 function warenkorbAusgeben() {
     var ausgabe = '';
     var gesamtpreis =0;
+    //document.getElementById("anzahlpizza").removeChild(document.getElementById("anzahlpizza"));
+    document.getElementById('anzahlpizza').firstChild.nodeValue = ''+warenkorb.length;
+
+    var ulistwarenkorb = document.createElement('ul');
+    ulistwarenkorb.id = 'liste';
+    if (document.getElementById("liste"))
+    document.getElementById('warenkorb').removeChild(document.getElementById("liste"));
      warenkorb.sort();
         for (var i = 0; i < warenkorb.length; ++i) {
             
             gesamtpreis+=warenkorb[i].price;
             
 
-            // var elm = document.getElementById('price'+(i+1));
-            // var first = elm.dataset.price;
-            // gesamtpreis+=first;
-            ausgabe += '<li id="nr' + i + '">';
-            ausgabe += '<span class = "pizza123">' + warenkorb[i].name +'</span>';
-            ausgabe += '<input type="button" value="X" id="loeschen" onclick="loescheNr(' + i + ');" />';
-            ausgabe += '</li>';
+            
+            var lielement = document.createElement('li');
+            lielement.id="nr"+i;
+            var spanelement = document.createElement('span');
+            spanelement.classList.add('pizza123');
+            var pizzaname = document.createTextNode(warenkorb[i].name);
+            spanelement.appendChild(pizzaname);
+            var inputelement = document.createElement('input');
+            inputelement.setAttribute('type', 'button');
+            inputelement.setAttribute('class', 'myButton');
+            inputelement.setAttribute('value', 'X');
+            inputelement.setAttribute('id', 'loeschen');
+            inputelement.setAttribute('onclick', 'loescheNr('+i+');');
+            spanelement.appendChild(inputelement);
+            lielement.appendChild(spanelement);
+            ulistwarenkorb.appendChild(lielement);
+
+
+
+
+            // ausgabe += '<li id="nr' + i + '">';
+            // ausgabe += '<span class = "pizza123">' + warenkorb[i].name ;
+            // ausgabe += '<input type="button" class= "myButton" value="X" id="loeschen" onclick="loescheNr(' + i + ');" />'+'</span>';
+            // ausgabe += '</li>';
     }
     
-    document.getElementById('liste').innerHTML = ausgabe;
-    document.getElementById('Gesamtpreis').innerHTML = gesamtpreis.toFixed(2);
+    document.getElementById('warenkorb').appendChild(ulistwarenkorb);
+    document.getElementById('Gesamtpreis').firstChild.nodeValue = ''+gesamtpreis.toFixed(2);
 
-    var element = document.getElementById('list1');
-    while (element.firstChild) {
-      element.removeChild(element.firstChild);
-    }
+   
+    
   
-    for (var i = 0; i < 10; i++) {
-      var newLI = document.createElement('li');
-      var liNummer = i + 1;
-      var newLIText = document.createTextNode('Das ist Listeneintrag Nummer ' + liNummer);
-      document.getElementById('liste').appendChild(newLI);
-      document.getElementsByTagName('li')[i].appendChild(newLIText);
-    }
+    // for (var i = 0; i < 10; i++) {
+    //   var newLI = document.createElement('li');
+    //   var liNummer = i + 1;
+    //   var newLIText = document.createTextNode('Das ist Listeneintrag Nummer ' + liNummer);
+    //   document.getElementById('liste').appendChild(newLI);
+    //   document.getElementsByTagName('li')[i].appendChild(newLIText);
+    
 
     console.dir(warenkorb);
     console.log(gesamtpreis);
@@ -100,6 +142,9 @@ function pushToDB(){
         alert('Bitte Pizzen auswählen!')
     }
     else{
+      console.log('test121121');
+     
+      
         // Erstelle Object von Bestellung mit Kontaktdaten und Warenkorbinhalt
     var bestellung = {Adresse:document.getElementById('Adresse').value,
                     Vorname: document.getElementById('Vorname').value,
@@ -113,9 +158,9 @@ function pushToDB(){
         xhr.setRequestHeader('Content-type', 'application/json;=UTF-8');
 
         
-
+        console.log(JSON.stringify(bestellung));
         xhr.send(JSON.stringify(bestellung));
-        xhr.abort();
+        //xhr.abort();
 
         xhr.onreadystatechange = () => {
             if(this.readyState == 4  && this.status == 200){
@@ -125,10 +170,15 @@ function pushToDB(){
   
         xhr.onload = function(){
         console.log(this.responseText);
+
+
         }
-  
+        alert('Vielen Dank für ihre Bestellung ---> Sie werden nun zur Übersicht weitergeleitet');
+        window.open("http://localhost//EWA%20Praktikum%20/Praktikum%202/EWA/Seitenklasse_kunde.php"); 
+        //alert('Vielen Dank für ihre Bestellung ---> Sie werden nun zur Übersicht weitergeleitet');
+       
     } 
-   
+    
     }
 
 

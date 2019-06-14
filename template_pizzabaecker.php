@@ -62,7 +62,7 @@ $prevBestellungID = '';
         
         <?php for($i=0; $i < count($bestellungen); $i++){ 
             if($bestellungen[$i]['Status'] == 'im ofen' || $bestellungen[$i]['Status'] == 'Bestellung eingegangen'){ 
-                $tmpB = $bestellungen[$i]['fBestellungsID']; 
+                $tmpB = $bestellungen[$i]['fBestellungID']; 
                 if($tmpB != $prevBestellungID) { 
                 ?>
             <div class="Status">
@@ -71,7 +71,7 @@ $prevBestellungID = '';
                 <span id = "Bestellnummer"> Bestellnummer: <?php echo htmlspecialchars($tmpB); ?></span>
                 <br><br> <?php
                 for( $a=0; $a <count($bestellungen); $a++){
-                    if($tmpB == $bestellungen[$a]['fBestellungsID']){ ?>
+                    if($tmpB == $bestellungen[$a]['fBestellungID']){ ?>
                     
                 <div id = "pizza_name">
                     <?php 
@@ -118,12 +118,12 @@ protected function processReceivedData() {
     if(isset($_POST['status']))
     {    $status= mysqli_real_escape_string($this->database, $_POST['status']);
         //echo $status ;
-        $fbestellungsid= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungsID']);
+        $fbestellungid= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fBestellungID']);
         $fpizzanummer= mysqli_real_escape_string($this->database, $this->getViewData()[$_POST['index_pizzanummer']]['fPizzaNummer']);
        // print_r($fpizzanummer) ;
 
         
-        $sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungsID = '$fbestellungsid' AND fPizzaNummer ='$fpizzanummer'";
+        $sql= "UPDATE `BestelltePizza` SET `Status`= '$status' WHERE fBestellungID = '$fbestellungid' AND fPizzaNummer ='$fpizzanummer'";
         mysqli_query($this->database, $sql);
         //print_r($bestelltePizzen);
 

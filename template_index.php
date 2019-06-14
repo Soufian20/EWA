@@ -24,7 +24,7 @@ protected function generateView() {
     
     $this->generatePageHeader('Index');
     ?>
-    <div><form action="template_index.php" method="post">
+    <div class = "Lieferstatus"><form action="template_index.php" method="post">
     <input type="submit" name="someAction" value="GO" />
     </form></div>
 
@@ -34,7 +34,7 @@ protected function generateView() {
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction']))
 {
     $_SESSION = array(); 
-    echo("Hat geklappt!");  
+    echo('<div class= "Lieferstatus">Hat geklappt!</div>');  
 }
 
 

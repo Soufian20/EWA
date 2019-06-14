@@ -41,8 +41,12 @@ class PageTemplate extends Page
      */
     protected function getViewData()
     {
-        if(isset($_SESSION['BestellungsID'])){
-            $sql = "SELECT * FROM bestelltePizza WHERE fBestellungsID = ".$_SESSION['BestellungsID'].";";
+        if(isset($_SESSION['BestellungID'])){
+            
+           $sql = "SELECT * FROM bestelltepizza 
+			INNER JOIN bestellung ON bestelltepizza.fBestellungID = bestellung.BestellungID
+			INNER JOIN Angebot ON bestelltepizza.fPizzaNummer = angebot.PizzaNummer
+			WHERE fBestellungID={$_SESSION['BestellungID']}";
        
     
             $recordset = $this->database->query ($sql);
