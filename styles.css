@@ -251,7 +251,6 @@ a {
 }
 
 .span-radio{
-  position: relative;
     text-align: center;
     margin: 20px;
 
@@ -259,7 +258,6 @@ a {
 
 .radio {
 
-  position: relative;
     text-align: center;
     margin: 10px;
     margin-left: 45px;
