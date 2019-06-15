@@ -71,17 +71,18 @@ class PageTemplate extends Page
             echo $created_date;
             $sql = "INSERT INTO `Bestellung` (`BestellungID`, `Adresse`, `Vorname`, `Nachname`, `Bestellzeitpunkt`) VALUES (NULL, '$Adresse', '$Vorname','$Nachname','$created_date');";
             mysqli_query($this->database, $sql);
-            print_r($bestellung);
+            //print_r($bestellung);
             for ($i = 0; $i < Count($bestellung['Pizzen']); $i++) {
                 $pizzaname = $bestellung['Pizzen'][$i]['name'];
                 echo ($pizzaname);
-                $sql = "SELECT BestellungID FROM Bestellung WHERE Bestellzeitpunkt='$created_date' union SELECT PizzaNummer FROM Angebot WHERE PizzaName='$pizzaname';";
+                // $sql = "SELECT BestellungID FROM Bestellung WHERE Bestellzeitpunkt='$created_date' union SELECT PizzaNummer FROM Angebot WHERE PizzaName='$pizzaname';";
+                $sql = "SELECT b.BestellungID, a.PizzaNummer FROM Bestellung b, Angebot a WHERE b.Bestellzeitpunkt='$created_date' AND a.PizzaName='$pizzaname';"; 
                 $recordset = $this->database->query($sql);
                 $pizza = $recordset->fetch_all(MYSQLI_ASSOC);
                 print_r($pizza);
                 $fbestnummer = $pizza[0]['BestellungID'];
 
-                $fpizzanummer = $pizza[1]['BestellungID'];
+                $fpizzanummer = $pizza[0]['PizzaNummer'];
                 $sqli = "INSERT INTO `BestelltePizza` (`PizzaID`, `fBestellungID`, `fPizzaNummer`, `Status`) VALUES (NULL, '$fbestnummer', '$fpizzanummer', 'Bestellung eingegangen');";
                 mysqli_query($this->database, $sqli);
 

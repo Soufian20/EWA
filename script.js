@@ -1,5 +1,5 @@
 
-"use strict";
+// "use strict";
 
 var warenkorb = [];
 
@@ -120,7 +120,7 @@ function deleteCart(){
 
 
 
-
+var xhr = new XMLHttpRequest();
 
 function pushToDB(){
 
@@ -153,7 +153,7 @@ function pushToDB(){
                     
 
 
-        var xhr = new XMLHttpRequest();
+        
         xhr.open('POST', 'ajaxtest.php', true);
         xhr.setRequestHeader('Content-type', 'application/json;=UTF-8');
 
