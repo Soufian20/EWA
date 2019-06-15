@@ -64,8 +64,8 @@ EOT;
 			<br>
 			<form id="fomr'.$i.'" action="Seitenklasse_pizzabaecker.php" method="POST" accept-charset="UTF-8">
 				<fieldset id="form'.$i.'">
-				<input type="radio" id="radio" name="radio-status" value="im Ofen" $checked/>
-				<input type="radio" id="radio" name="radio-status" value="fertig"/>
+				<input type="radio" class="radio" name="radio-status" value="im Ofen" $checked/>
+				<input type="radio" class="radio" name="radio-status" value="fertig"/>
 				<br>
 				<button type="submit" value="$i" name="index_pizzanummer">Update</button>
 				</fieldset>	
