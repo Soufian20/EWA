@@ -68,14 +68,14 @@ EOT;
 				<br>
 				<form id="fomr'.$i.'" action="Seitenklasse_fahrer.php" method="POST" accept-charset="UTF-8">
 					<fieldset id="form'.$i.'">
-					<input type="radio" id="radio" name="radio-status" value="unterwegs" $current_status_unterwegs />
-					<input type="radio" id="radio" name="radio-status" value="geliefert"/>
+					<input type="radio" class="radio" name="radio-status" value="unterwegs" $current_status_unterwegs />
+					<input type="radio" class="radio" name="radio-status" value="geliefert"/>
 					<br>
 					<button type="submit" value="$i" name="index_bestellnummer">Update</button>
 					</fieldset>	
 				</form>
 				</div> 
-				</section>
+				
 EOT;
 	
 		

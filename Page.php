@@ -124,11 +124,11 @@ abstract class Page
         <head>
             <meta charset="UTF-8"/>
 EOT;
-        if ($headline == 'Fahrerr') {
+        if ($headline == 'Fahrer') {
             echo '<meta http-equiv="refresh" content="5; url=template_fahrer.php" />';
         }
 
-        if ($headline == 'Pizzabäckerr') {
+        if ($headline == 'Pizzabäcker') {
             echo '<meta http-equiv="refresh" content="5; url=template_pizzabaecker.php" />';
         }
 
