@@ -12,7 +12,7 @@ class Bestellung extends Page
     }
     
     protected function getViewData() {
-		$sql = "SELECT fBestellungID, PizzaName, fPizzaNummer, Status FROM bestelltepizza
+		$sql = "SELECT fBestellungID, PizzaName, fPizzaNummer, Status, PizzaID FROM bestelltepizza
 		INNER JOIN angebot ON bestelltepizza.fPizzaNummer = angebot.PizzaNummer
 		ORDER BY fBestellungID";
 
