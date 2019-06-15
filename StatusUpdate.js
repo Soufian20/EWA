@@ -6,7 +6,6 @@ function process(json1) {
   var elementLieferstatus = document.getElementById("test123");
   if (document.getElementById("bestellstatus"))
     elementLieferstatus.removeChild(document.getElementById("bestellstatus"));
-
   var obj = JSON.parse(json);
 
   function spanblock(string) {

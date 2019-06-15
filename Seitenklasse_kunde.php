@@ -55,32 +55,7 @@ protected function generateView() {
 	echo '<script src="StatusUpdate.js"></script>';
 	<section class="Lieferstatus" id="test123">
 EOT;
-	$prexBestellungID = ''; // Bestellung davor
-	for($i=0; $i < count($bestellungen); $i++)
-	{	
-		// $currentBestellungID = $bestellungen[$i]['fBestellungID'];
-		// if ($currentBestellungID != $prexBestellungID)
-		// {
-		// 	echo '<div class="Bestellstatus">';
-		// 	echo '<h2>Kunde (Lieferstatus)</h2>';
-		// 	$prexBestellungID = $currentBestellungID;
-		// 	echo '<span>Vorname: '. htmlspecialchars($bestellungen[$i]["Vorname"]) .'</span><br>';
-		// 	echo '<span>Nachname: '. htmlspecialchars($bestellungen[$i]["Nachname"]) .'</span><br>';
-		// 	echo '<span>Adresse: '. htmlspecialchars($bestellungen[$i]["Adresse"]) .'</span><br>';
-		// 	echo '<span>Bestellzeitpunkt: '. htmlspecialchars($bestellungen[$i]["Bestellzeitpunkt"]) .'</span><br>';
-
-		// 	for($j=0; $j < count($bestellungen); $j++)
-		// 	{
-		// 		if($currentBestellungID == $bestellungen[$j]['fBestellungID'])
-		// 		{
-		// 			echo '<label>'. htmlspecialchars($bestellungen[$j]['PizzaName']) .':
-		// 			<output>'. htmlspecialchars($bestellungen[$j]['Status']) .'</output> 
-		// 			</label> <br>';		
-		// 		}
-		// 	}
-		// }			
-		// echo '</div>';			
-	} 
+	 
 	echo '</section>';	
 }
     
