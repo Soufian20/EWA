@@ -109,17 +109,17 @@ class Bestellung extends Page
             <span>Bitte machen Sie Ihre Eingaben</span> <br>
             <label>
                 <span>Vorname:</span> <br>
-                <input type="text" id="Vorname" name="Vorname" value="" placeholder="Ihr Vorname" maxlength="15" required />
+                <input type="text" id="Vorname" name="Vorname" value="" placeholder="Ihr Vorname" required />
             </label>
             <br>
             <label>
                 <span>Nachname:</span> <br>
-                <input type="text" id="Nachname" name="Nachname" value="" placeholder="Ihr Nachname" maxlength="15" required />
+                <input type="text" id="Nachname" name="Nachname" value="" placeholder="Ihr Nachname" required />
             </label>
             <br>
             <label>
                 <span>Adresse:</span> <br>
-                <input type="text" id="Adresse" name="Adresse" value="" placeholder="Ihre Adresse" maxlength="15" required /> <!-- required: Feld darf nicht leer bleiben-->
+                <input type="text" id="Adresse" name="Adresse" value="" placeholder="Ihre Adresse" required /> <!-- required: Feld darf nicht leer bleiben-->
             </label>
             <br>
             <button id="deleteContact" onclick="deleteContact()">Kontaktdaten zurücksetzen</button>
