@@ -63,8 +63,8 @@ EOT;
 				if(htmlspecialchars($bestellungen[$i]["Status"])== 'unterwegs') $current_status_unterwegs = ' checked';
 				
 				echo <<<EOT
-				<span>unterwegs</span>
-				<span>geliefert</span>
+				<span class="span-radio">unterwegs</span>
+				<span class="span-radio">geliefert</span>
 				<br>
 				<form id="fomr'.$i.'" action="Seitenklasse_fahrer.php" method="POST" accept-charset="UTF-8">
 					<fieldset id="form'.$i.'">

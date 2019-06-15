@@ -144,14 +144,14 @@ EOT;
 
         <div class="wrap">
 
-            <h2 class="logo"><a href="template_index.php">Pi<span>zz</span>a</a></h2>
+            <h2 class="logo"><a href="Seitenklasse_index.php">Pi<span>zz</span>a</a></h2>
 
             <a id="menu-icon">&#9776; Menu</a>
 
             <nav class="navbar">
             <ul class="menu">
-                <li><a class="$index_active" href="template_index.php">Home</a></li><!--
-            --><li><a class="$bestellung_active" href="template_bestellung.1.php">Bestellung</a></li><!--
+                <li><a class="$index_active" href="Seitenklasse_index.php">Home</a></li><!--
+            --><li><a class="$bestellung_active" href="Seitenklasse_bestellung.php">Bestellung</a></li><!--
             --><li><a class="$kunde_active" href="Seitenklasse_kunde.php">Kunde</a></li><!--
             --><li><a  class="$pizzabäcker_active " href="Seitenklasse_pizzabaecker.php">Pizzabäcker</a></li><!--
             --><li><a  class="$fahrer_active" href="Seitenklasse_fahrer.php">Fahrer</a></li>
@@ -160,15 +160,7 @@ EOT;
 
         </div>
         </header>
-
-
-
-
-
         <script  src="./script.js"></script>
-
-
-
 EOT;
     }
 

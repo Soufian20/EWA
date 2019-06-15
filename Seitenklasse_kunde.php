@@ -46,17 +46,18 @@ protected function generateView() {
 	$this->generatePageHeader('Kunde');
 	if(!isset($bestellungen[0]['fBestellungID']))
 	{
-		echo '<section class="Lieferstatus"><h1>Bitte Bestellung für Kunden anlegen</h1></section>';
+		echo '<div class="Lieferstatus"><h1>Bitte Bestellung für Kunden anlegen</h1></section>';
 		
 	}
 	else{
 	echo <<<EOT
 	<!-- Kundenansicht -->
-	echo '<script src="StatusUpdate.js"></script>';
+	<script src="StatusUpdate.js"></script>
 	<section class="Lieferstatus" id="test123">
+	</div>
 EOT;
 	 
-	echo '</section>';	
+	
 }
     
     $this->generatePageFooter();

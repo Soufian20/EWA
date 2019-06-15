@@ -250,10 +250,30 @@ a {
     right: 100px;
 }
 
+.span-radio{
+  position: relative;
+    text-align: center;
+    margin: 20px;
+
+}
+
+.radio {
+
+  position: relative;
+    text-align: center;
+    margin: 10px;
+    margin-left: 45px;
+    margin-right: 30px;
+}
 .radioButtons > label > input {
     position: relative;
     left: 100px;
     margin: 0.5rem;
+}
+
+.Status > form > fieldset {
+  border: 0;
+  padding: 0;
 }
 
 /* === FAHRER === */

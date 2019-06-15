@@ -48,10 +48,12 @@ protected function generateView() {
 		<h2>Pizzabäcker (Lieferstatus)</h2>
 		
 EOT;
-	$checked = '';
+	
 	
 	for($i=0; $i < count($bestellungen); $i++)
-	{	if($bestellungen[$i]['Status'] == 'im Ofen') $checked = ' checked';
+	{	
+		$checked = '';
+		if($bestellungen[$i]['Status'] == 'im Ofen') $checked = ' checked';
 		if($bestellungen[$i]['Status'] == 'im Ofen' || $bestellungen[$i]['Status'] == 'Bestellung eingegangen')
 		{
 			
@@ -59,13 +61,13 @@ EOT;
 			echo ' BestellungID: '. htmlspecialchars($bestellungen[$i]['fBestellungID']) .' <br>';
 			echo ''. htmlspecialchars($bestellungen[$i]['PizzaName']) .': '. htmlspecialchars($bestellungen[$i]['Status']) .'<br><br>';
 			echo <<<EOT
-			<span>Im Ofen</span>
-			<span>fertig</span>
+			<span class="span-radio">Im Ofen</span>
+			<span class="span-radio">fertig</span>
 			<br>
 			<form id="fomr'.$i.'" action="Seitenklasse_pizzabaecker.php" method="POST" accept-charset="UTF-8">
 				<fieldset id="form'.$i.'">
-				<input type="radio" id="radio" name="radio-status" value="im Ofen" $checked/>
-				<input type="radio" id="radio" name="radio-status" value="fertig"/>
+				<input type="radio" class="radio" name="radio-status" value="im Ofen" $checked/>
+				<input type="radio" class="radio" name="radio-status" value="fertig"/>
 				<br>
 				<button type="submit" value="$i" name="index_pizzanummer">Update</button>
 				</fieldset>	
@@ -82,7 +84,6 @@ EOT;
 
 protected function processReceivedData() {
 	parent::processReceivedData();
-	// if(isset($_POST['index_pizzanummer'])
     {    
 		if(isset($_POST['radio-status']))
 		{
