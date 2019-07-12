@@ -28,22 +28,52 @@
                     <img src="images/Pizza-Margherita.png" alt="Pizza Margherita" title="Pizza Margherita" width="100" height="100" />
                     <figcaption>Pizza Margherita</figcaption>
                 </figure>
+                <span>4.00€</span> 
 
                 <figure>
-                        <img src="images/Pizza-Salami.png" alt="Pizza Salami" title="Pizza Salami" width="100" height="100" />
-                        <figcaption>Pizza Salami</figcaption>
+                    <img src="images/Pizza-Salami.png" alt="Pizza Salami" title="Pizza Salami" width="100" height="100" />
+                    <figcaption>Pizza Salami</figcaption>    
                 </figure>
-
+                <span>4.00€</span> 
         </section>
 
         <section class="Warenkorb">
-                <h2>Warenkorb</h2>
+            <h2>Warenkorb</h2>
+
+            <form id="bestell_form" action="https://echo.fbi.h-da.de/" method="POST" accept-charset="UTF-8">
+
+                <select tabindex="1" name="Bestellungen[]" size="3" multiple>
+                    <option selected="selected"> Margherita</option>
+                    <option>                     Salami</option>
+                </select>
+                <br>
+                <label>Gesamtpreis:
+                    <output>14.50€</output>  
+                </label>
+
+                <fieldset>
+                    <label for="Vorname">Vorname</label>  
+                    <input type="text" name="Vorname" id="Vorname" value="" placeholder="Ihr Vorname" maxlength="10" required>
+                    <br>
+                    <label for="Nachname">Nachname</label>  
+                    <input type="text" name="Nachname" id="Nachname" value="" placeholder="Ihr Nachname" maxlength="10" required>
+                    <br>
+                    <label for="Adresse">Adresse</label>  
+                    <input type="text" name="Adresse" id="Adresse" value="" placeholder="Ihre Adresse" maxlength="10" required>
+                    <br>
+
+                    <button type="submit">Eingaben absenden</button>
+                    <button type="reset">Eingaben zurücksetzen</button>
+                </fieldset>
+            </form>
+
         </section>
+
             
     </section>
 
     <footer>
-            <p>© 2019 by Soufian</p>
+        <p>© 2019 by Soufian</p>
     </footer>
     
 
