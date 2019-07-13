@@ -1,7 +1,12 @@
+<?php
 
-<!DOCTYPE html>
-<html lang="de">  
-<head>
+function generateView()
+{
+    echo <<<EOT
+       
+    <!DOCTYPE html>
+    <html lang="de">  
+    <head>
     <meta charset="UTF-8" />
     <!-- für später: CSS include -->
     <!-- <link rel="stylesheet" href="XXX.css"/> -->
@@ -10,13 +15,13 @@
     <title>Bestellseite</title>
     <!-- Skaliert Breite für mobile Geräte nach Bildschirmbreite  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
+    </head>
+    <body>
 
     <header>
             <h1> --- Header --- </h1>
     </header>
-    
+
     <!-- NAVIGATIONSLEISTE -->
     <nav>  
         <h1> --- Nav --- </h1>
@@ -85,9 +90,17 @@
     <footer>
         <p>© 2019 by Soufian</p>
     </footer>
-    
+    </body>
+    </html>
 
+EOT;
+}
 
-    
-</body>
-</html>
+?>
+
+<?php
+
+//Main
+generateView();
+
+?>
