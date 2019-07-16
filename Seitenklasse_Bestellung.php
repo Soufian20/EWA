@@ -1,5 +1,11 @@
 <?php
 
+$handler = new MySessionHandler();
+session_set_save_handler($handler, true);
+session_start();
+echo "<script type='text/javascript'>console.log('Session wurde gestartet');</script>";
+
+
 require_once './Page.php';
 class Bestellung extends Page
 {
@@ -74,7 +80,6 @@ EOT;
     echo<<<EOT
     <section class="Formular" id=formular>
     <h2>Formular</h2>
-    <form id="bestell_form" action="https://echo.fbi.h-da.de/" method="POST" accept-charset="UTF-8">
     <fieldset>
         <label for="Vorname">Vorname</label>  
         <input type="text" name="Vorname" id="Vorname" value="" placeholder="Ihr Vorname" maxlength="10" required>
@@ -85,11 +90,10 @@ EOT;
         <label for="Adresse">Adresse</label>  
         <input type="text" name="Adresse" id="Adresse" value="" placeholder="Ihre Adresse" maxlength="10" required>
         <br>
-
-        <button type="submit" tabindex="1" accesskey="s">Eingaben absenden</button>
-        <button type="reset" tabindex="2" accesskey="r">Eingaben zurücksetzen</button>
+        <button id="Formular_senden" onclick="FormularSenden()" tabindex="1" accesskey="s">Eingaben absenden</button>
+        <button id="Formular_leeren" onclick="FormularLeeren()" tabindex="2" accesskey="r">Eingaben zurücksetzen</button>
+        <button id="Warenkorb_leeren" onclick="WarenkorbLeeren()" tabindex="3" accesskey="l">Warenkorb leeren</button>  
     </fieldset>
-    </form>
     </section>
 
 EOT;
