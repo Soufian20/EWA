@@ -89,10 +89,10 @@ abstract class Page
         <nav>  
         <h2> --- Nav --- </h2>
         <ul>
-            <li><a href="Bestellung.php"> Bestellung</a></li>
-            <li><a href="Kunde.php"> Kunde</a></li>
-            <li><a href="Fahrer.php"> Fahrer</a></li>
-            <li><a href="Pizzabaecker.php"> Pizzabäcker</a></li>
+            <li><a href="Seitenklasse_Bestellung.php"> Bestellung</a></li>
+            <li><a href="Seitenklasse_Kunde.php"> Kunde</a></li>
+            <li><a href="Seitenklasse_Fahrer.php"> Fahrer</a></li>
+            <li><a href="Seitenklasse_Pizzabaecker.php"> Pizzabäcker</a></li>
         </ul>
         </nav>
 EOT;

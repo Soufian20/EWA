@@ -91,6 +91,8 @@ function FormularLeeren()
     document.getElementById("Adresse").value = "";
 }
 
+let xhr = new XMLHttpRequest();
+
 function FormularSenden()
 {
     "use strict";
@@ -108,7 +110,23 @@ function FormularSenden()
             Nachname: document.getElementById("Nachname").value,
             Pizzen: warenkorb
         }
-        console.log("Bestellung wurde abgeschickt -> " + bestellung);
+        console.log("Bestellung wurde erstellt -> " + bestellung);
+
+        xhr.open('POST', 'Clientseitig_KundenStatus.php', true);
+        xhr.setRequestHeader('Content-type', 'application/json;=UTF-8');
+
+        console.log(JSON.stringify(bestellung));
+        xhr.send(JSON.stringify(bestellung));
+
+        xhr.onload = function () {
+            console.log(this.responseText);
+        }
+
+        alert('Vielen Dank für ihre Bestellung ---> Sie werden nun zur Übersicht weitergeleitet');
+        FormularLeeren();
+        WarenkorbLeeren();
+        window.open("Seitenklasse_Kunde.php","_self");
+        
     } else {
         alert("Bitte Formular vollstandig ausfühlen und Pizzen auswählen!");
     }

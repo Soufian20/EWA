@@ -1,5 +1,5 @@
 <?php
-require_once './SessionManagment.php';
+require_once './SessionManagement.php';
 $handler = new MySessionHandler();
 session_set_save_handler($handler, true);
 session_start();
@@ -67,7 +67,6 @@ EOT;
                 </figure>
 EOT;
     }
-
     echo<<<EOT
     <!-- WARENKORB -->
     <section class="Warenkorb" id="warenkorb">
@@ -76,7 +75,6 @@ EOT;
         <span>Gesamtpreis <span id="Gesamtpreis">0€</span></span>  
     </section>
 EOT;
-
     echo<<<EOT
     <section class="Formular" id=formular>
     <h2>Formular</h2>
@@ -95,10 +93,7 @@ EOT;
         <button id="Warenkorb_leeren" onclick="WarenkorbLeeren()" tabindex="3" accesskey="l">Warenkorb leeren</button>  
     </fieldset>
     </section>
-
 EOT;
-
-
     //von Speisekarte
     echo '</section>';
     // von mai_bestellung
